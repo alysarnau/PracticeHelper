@@ -2,15 +2,15 @@
 
 {% block content %}
 <div>
-    <h2 class="display-6">All Practices</h2>
+    <h2 class="display-6">All Practice Entries</h2>
     <div class="row">
         {% for practice in practices %}
             <div class="card">
-                <h5 class="card-header">{{practice.name}}</h5>
+                <h5 class="card-header">{{practice.date}}</h5>
                 <div class="card-body">
-                    <h6 class="card-title">Practice info goes here
+                    <h6 class="card-title">TODO: EVENTUALLY PUT IN PIECES AND COMPOSERS
                     </h6>
-                    <a href='/practices/{{practice._id}}' class="btn btn-info">View {{practice.name}}</a>
+                    <a href='/practices/{{practice._id}}' class="btn btn-info">View Practice</a>
                 </div>
             </div>
         {% endfor %}

@@ -14,12 +14,8 @@ router.post('/:practiceId', (req, res) => {
     const practiceId = req.params.fruitId;
     req.body.author = req.body.userId;
     Practice.findById(practiceId)
-    // after we have found a fruit
-    // take that fruit and add the comment
     .then(practice => {
-        // single practice doc there is a field called entries
         practice.entries.push(req.body);
-        // if we change a doc, we have to return and call .save() on the doc!
         return practice.save()
     })
     .then(practice => {

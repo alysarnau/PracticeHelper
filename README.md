@@ -1,6 +1,9 @@
 # Practice Helper App
 
-User stories: (`As a user...`)
+# Purpose
+To improve as a musician, consistent practice is key! The best thing you can do to assist in that is to keep detailed practice notes: keeping detailed notes about what precisely you have practiced, at what tempo, and for how long, all come in handy when it comes to improving for the hobby musician or the professional player. This app is here to help! Detailed notes broken down by day and piece, that are easily reviewed, will help you improve as a musician. Enjoy!
+
+# User stories: (`As a user...`)
 - Create/Post a Day's practice (2 routes in one!)
     - new schema
     - create a model to use

@@ -19,6 +19,7 @@ const practiceSchema = new Schema({
         // refers to const User = model('User', userSchema)
         // the string of 'User' is how we reference a model
     },
+    instrument: String,
     entries: [entrySchema], //a practice can have many entries
 }, {
     timestamps: true,

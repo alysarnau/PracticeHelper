@@ -45,33 +45,31 @@ const Practice = require('../models/practice')
 // })
 
 
-// // GET route for displaying my form for create
-// router.get('/new', (req, res) => {
-//     const username = req.session.username;
-//     const loggedIn = req.session.loggedIn;
-//     res.render('fruits/new', {username, loggedIn})
-// })
+// GET route for displaying my form for create
+router.get('/new', (req, res) => {
+    const username = req.session.username;
+    const loggedIn = req.session.loggedIn;
+    res.render('practices/new', {username, loggedIn})
+})
 
 // //POST (create) action
-// router.post('/', (req,res) => {
-//     req.body.readyToEat = req.body.readyToEat === 'on' ? true : false;
+router.post('/', (req,res) => {
+    // now that we have user specific routes, we'll add a username upon creation
+    // remember, when we login, we saved the username to the session object
 
-//     // now that we have user specific routes, we'll add a username upon creation
-//     // remember, when we login, we saved the username to the session object
-
-//     // using the ._id to set the owner field
-//     req.body.owner = req.session.userId
+    // using the ._id to set the owner field
+    req.body.owner = req.session.userId
     
-//     Fruit.create(req.body)
-//         .then(fruit => {
-//             console.log(fruit)
-//             //res.json(fruit)
-//             res.redirect('/fruits')
-//         })
-//         .catch(err => {
-//             res.json(err)
-//         })
-// })
+    Practice.create(req.body)
+        .then(practice => {
+            console.log(practice)
+            //res.json(fruit)
+            res.redirect('/practices')
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
 
 
 

@@ -1,6 +1,6 @@
 // using an already connected mongoose, not a fresh one from node modules
 const mongoose = require('./connection');
-const commentSchema = require('./comment')
+const entrySchema = require('./entry')
 
 // need to get Schema + model
 // deconstructure syntax - need an object to deconstruct

@@ -72,7 +72,7 @@ router.post('/login', async (req, res) => {
                     req.session.username = name;
                     req.session.loggedIn = true;
                     req.session.userId = user._id;
-                    // redirect to the '/fruits' page
+                    // redirect to the '/practices' page
                     console.log('this is the session after login', req.session);
                     res.redirect('/practices')
                 } else {

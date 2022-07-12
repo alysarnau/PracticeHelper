@@ -76,15 +76,17 @@ Practice Review
 ERD
 <img src="./whiteboard/ERD.png" />
 
+# External API Used
+- https://openopus.org/
 
-# Routes Table
+# Routes Table for Overall Practice
 
-|   NAME   |     PATH           | HTTP VERB |            PURPOSE                   |
-|----------|--------------------|-----------|--------------------------------------| 
-| Index    | /practice          |    GET    | Displays all blog post               |
-| New      | /practice/new      |    GET    | Shows new form for new blog entry    |
-| Create   | /practice          |   POST    | Creates a new blog post              |
-| Show     | /practice/:id      |    GET    | Shows one specified blog post        |
-| Edit     | /practice/:id/edit |    GET    | Shows edit form for one blog post    |
-| Update   | /practice/:id      |    PUT    | Updates a particular blog post       |
-| Destroy  | /practice/:id      |   DELETE  | Deletes a particular blog post       |
+|   NAME   |     PATH           | HTTP VERB |            PURPOSE                    |
+|----------|--------------------|-----------|---------------------------------------| 
+| Index    | /practice          |    GET    | Displays all practice entries         |
+| New      | /practice/new      |    GET    | Shows new form for new practice entry |
+| Create   | /practice          |   POST    | Creates a new practice post           |
+| Show     | /practice/:id      |    GET    | Shows one specified practice post     |
+| Edit     | /practice/:id/edit |    GET    | Shows edit form for one practice post |
+| Update   | /practice/:id      |    PUT    | Updates a particular practice post    |
+| Destroy  | /practice/:id      |  DELETE   | Deletes a particular practice post    |

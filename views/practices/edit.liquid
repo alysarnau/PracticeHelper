@@ -1,0 +1,30 @@
+{% layout 'layout.liquid' %}
+
+{% block content %}
+<div class="container-md">
+    <form action="/practices/{{practice._id}}?_method=PUT" method="POST">
+        <fieldset>
+            <legend>Edit Practice Entry</legend>
+            <label class="form-label" for="date">Date:</label>
+            <input 
+                class="form-control" 
+                type="date" 
+                name="date" 
+                id="date" 
+                value="{{practice.date}}"
+            >
+            <label class="form-label" for="instrument">Instument:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="instrument" 
+                id="instrument" 
+                placeholder="enter instrument"
+                value="{{practice.instrument}}"
+            >
+            </fieldset>
+        <input type="submit" value="EDIT PRACTICE ENTRY" class="btn btn-success">
+        <a href="/practices" class="btn btn-danger">I changed my mind, go back!</a>
+    </form>
+</div>
+{% endblock %}

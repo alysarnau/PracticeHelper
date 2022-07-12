@@ -10,7 +10,10 @@ const { Schema, model } = mongoose;
 
 // for sub doc relationships, we set up the relationship on the RECEIVING end (ie. fruit in this case)
 const practiceSchema = new Schema({
-    date: Date,
+    date: {
+        type: String,
+        required: true,
+    },
     // TODO: will have to use Date.now()?
     owner: {
         type: Schema.Types.ObjectId,        

@@ -48,3 +48,40 @@ User stories: (`As a user...`)
 # Whiteboard
 
 -https://miro.com/app/board/uXjVOmuG6zM=/?share_link_id=766756207036
+
+Start Screen
+<img src="./whiteboard/startscreen.png" />
+
+Sign In
+<img src="./whiteboard/signin.png" />
+
+Sign Up
+<img src="./whiteboard/signup.png" />
+
+Log-In Screen
+<img src="./whiteboard/loginscreen.png" />
+
+User Home
+<img src="./whiteboard/userhome.png" />
+
+Note Adding Page
+<img src="./whiteboard/noteaddingpage.png" />
+
+Practice Review
+<img src="./whiteboard/practiceReview.png" />
+
+ERD
+<img src="./whiteboard/ERD.png" />
+
+
+# Routes Table
+
+|   NAME   |     PATH           | HTTP VERB |            PURPOSE                   |
+|----------|--------------------|-----------|--------------------------------------| 
+| Index    | /practice          |    GET    | Displays all blog post               |
+| New      | /practice/new      |    GET    | Shows new form for new blog entry    |
+| Create   | /practice          |   POST    | Creates a new blog post              |
+| Show     | /practice/:id      |    GET    | Shows one specified blog post        |
+| Edit     | /practice/:id/edit |    GET    | Shows edit form for one blog post    |
+| Update   | /practice/:id      |    PUT    | Updates a particular blog post       |
+| Destroy  | /practice/:id      |   DELETE  | Deletes a particular blog post       |

@@ -16,6 +16,7 @@ router.delete('/:id', (req,res) => {
             res.json(err)
         })
 })
+
 ////////////////////////////////
 // GET - display an update form
 ////////////////////////////////
@@ -76,7 +77,6 @@ router.post('/', (req,res) => {
         })
 })
 
-
 ////////////////////////////////
 // GET - index action
 ////////////////////////////////
@@ -122,10 +122,10 @@ router.get('/:id', (req,res) => {
     // entry has an author field and that is the ref to the User model
     // always going to be a string of the value you want to populate
     // this also has to be another model
-        .populate('entrys.author')
+        .populate('entries.author')
     // send back some json
         .then(practice => {
-            //res.json(practice)
+            // res.json(practice)
             const userId = req.session.userId
             const username = req.session.username
             res.render('practices/show', { practice, userId, username })

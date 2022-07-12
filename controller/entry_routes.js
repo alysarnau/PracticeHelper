@@ -2,7 +2,7 @@ const { response } = require('express')
 const express = require('express')
 // making a router
 const router = express.Router()
-// importing Fruit model to access DB
+// importing Practice model to access DB
 const Entry = require('../models/practice')
 const Practice = require('../models/practice')
 
@@ -17,14 +17,13 @@ router.post('/:practiceId', (req, res) => {
     // after we have found a fruit
     // take that fruit and add the comment
     .then(practice => {
-        // single fruit doc there is a field called comments
+        // single practice doc there is a field called entries
         practice.entries.push(req.body);
-        // we have pushed it to the document, but it's not saved! so we need to use middleware
         // if we change a doc, we have to return and call .save() on the doc!
         return practice.save()
     })
     .then(practice => {
-        res.redirect(`/practicess/${practice._id}`)
+        res.redirect(`/practices/${practice._id}`)
     })
     .catch(err => {
         res.json(err)

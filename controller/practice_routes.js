@@ -25,7 +25,7 @@ router.get('/:id/edit', (req,res) => {
     const practiceID = req.params.id;
     Practice.findById(practiceID)
         .then(practice => {
-            res.render('practice/edit', { practice })
+            res.render('practices/edit.liquid', { practice })
         })
         .catch(err => {
             res.json(err)
@@ -37,7 +37,7 @@ router.get('/:id/edit', (req,res) => {
 ////////////////////////////////
 router.put('/:id', (req, res) => {
     const practiceID = req.params.id;
-    Practice.findByIdAndUpdate(practiceID, req.body, { new: true})
+    Practice.findByIdAndUpdate(practiceID, req.body, { new: true })
     // we need the new: true since we're using a PUT method
         .then(practice => {
             res.redirect(`/practices/${practice._id}`)
@@ -82,11 +82,8 @@ router.post('/', (req,res) => {
 ////////////////////////////////
 // localhost:3000/practices
 router.get('/', (req, res) => {
-    // mongoose to find all practices
     Practice.find({})
         .then(practices => {
-            // return practices as json
-            // res.json(practices);
             res.render('practices/index', { practices })
         })
         .catch(err => {

@@ -19,3 +19,12 @@ body {
 .nav-link {
     margin: 5px;
 }
+
+.delete {
+    border-radius: 25px;
+    background-color: red;
+}
+
+.entry {
+    margin-top: 10px;
+}

@@ -8,13 +8,22 @@
             <div class="card">
                 <h5 class="card-header">{{practice.date}}</h5>
                 <div class="card-body">
-                    <h6 class="card-title"><strong>Instrument:</strong> {{practice.instrument}}
+                    <h5 class="card-title"><strong>Instrument:</strong> {{practice.instrument}}
+                    </h5>
+                    <h6 class="card-body">
+                        {% for entry in practice.entries %}
+                        <strong>"{{entry.piece}}", {{entry.composer}}</strong>
+                        <ul>
+                            <li>{{entry.minutes}} minutes</li>
+                            <li>Notes: {{entry.note}}</li>
+                        </ul>
+                        {% endfor %}
                     </h6>
-                    <h6 class="card-body">TODO: EVENTUALLY PUT IN PIECES AND COMPOSERS</h6>
                     <a href='/practices/{{practice._id}}' class="btn btn-info">View Practice</a>
                 </div>
             </div>
         {% endfor %}
     </div>
+    <a href='/practices/new' class="btn btn-success">Log New Practice</a>
 </div>
 {% endblock %}

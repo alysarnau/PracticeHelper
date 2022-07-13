@@ -73,6 +73,7 @@ router.post('/', (req,res) => {
 ////////////////////////////////
 // GET - index action
 ////////////////////////////////
+// TODO: SHOW RESULTS CHRONOLOGICALLY   
 router.get('/', (req, res) => {
     Practice.find({})
         .then(practices => {

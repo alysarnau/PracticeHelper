@@ -14,7 +14,6 @@ const practiceSchema = new Schema({
         type: String,
         required: true,
     },
-    // TODO: will have to use Date.now()?
     owner: {
         type: Schema.Types.ObjectId,        
         // a single User ._id field

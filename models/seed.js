@@ -11,20 +11,151 @@ const Practice = require('./practice')
 /////////////////////////////////
 // seed code
 /////////////////////////////////
-// save my db connection to a variable for easy reference later
 const db = mongoose.connection
-
-// this runs the callback function when the db connection is opened from this file
 db.on('open', () => {
     // need array of starter fruits
     const startPractices = [
-        // TODO: add seeded data!
-        // { date: 1657640791, owner: "orange", entries: [''] },
-        // { name: 1657640792, owner: "purple", entries: [''] },
-        // { name: 1657640793, owner: "orange", entries: [''] },
-        // { name: 1657640794, owner: "red", entries: [''] },
-        // { name: 1657640795, owner: "brown", entries: [''] },
-    ]
+    {
+        date: '2022-07-11',
+        instrument: 'Piano',
+        entries: [
+        {
+            piece: 'Piece One',
+            composer: 'Bartok',
+            minutes: 15,
+            note: '80 bpm',
+        }
+        ],
+    },
+    {
+        date: '2022-07-13',
+        instrument: 'Piano',
+        entries: [
+        {
+            piece: 'Gnossiene #1',
+            composer: 'Satie',
+            minutes: 15,
+            note: 'Worked on expressiveness.',
+        },
+        {
+            piece: 'Little One',
+            composer: 'Bartok',
+            minutes: 21,
+            note: 'More bartok',
+        },
+        {
+            piece: 'Prelude #4',
+            composer: 'Chopin',
+            minutes: 20,
+            note: 'Worked on expressiveness bars 16-24',
+        }
+        ],
+    },
+    {
+        date: '2022-07-05',
+        instrument: 'Trombone',
+        entries: [
+        {
+            piece: 'Stars and Stripes Forever',
+            composer: 'Strauss',
+            minutes: 20,
+            note: 'Needs more forte!',
+        },
+        {
+            piece: 'Scales - Major',
+            composer: 'N/A',
+            minutes: 15,
+            note: '160 bpm',
+        }
+        ],
+    },
+    {
+        date: '2022-07-16',
+        instrument: 'Harpsicord',
+        entries: [
+        {
+            piece: "Devil's Trill Sonata, Movement 1",
+            composer: 'Tartini',
+            minutes: 25,
+            note: 'Needs more spookiness.',
+        }
+        ],
+    },
+    {
+        date: '2022-07-11',
+        instrument: 'Pianoforte',
+        entries: [
+        {
+            piece: "The Well-Tempered Klavier, #2",
+            composer: 'Bach',
+            minutes: 20,
+            note: 'Very fugue-y.',
+        }
+        ],
+        },
+    {
+        date: '2022-07-07',
+        instrument: 'Piccolo',
+        entries: [
+            {
+            piece: 'Stars and Stripes Forever',
+            composer: 'Strauss',
+            minutes: 25,
+            note: 'Working on the piccolo solo page 2.',
+            }
+        ],
+    },
+    {
+        date: '2022-07-11',
+        instrument: 'Piano',
+        entries: [
+            {
+            piece: 'Toccata and Fugue',
+            composer: 'Bach',
+            minutes: 25,
+            note: 'Working on left/right hand tradeoff.',
+            }
+        ],
+    },
+    {
+        date: '2022-07-10',
+        instrument: 'Kazoo',
+        entries: [
+            {
+            piece: 'Rem Lazar',
+            composer: 'N/A',
+            minutes: 20,
+            note: 'Finally nailing kazoo solo!',
+            }
+        ],
+    },
+    {
+        date: '2022-07-06',
+        instrument: 'Harmonica',
+        entries: [
+            {
+            piece: 'Clementine',
+            composer: 'Folk Song',
+            minutes: 20,
+            note: 'Worked out trills during second verse.',
+            }
+        ],
+    },
+    {
+        date: '2022-07-04',
+        instrument: 'Piano',
+        entries: [
+            {
+            piece: 'Scary Monsters and Nice Sprites',
+            composer: 'Skrillex',
+            minutes: 120,
+            note: 'Managed to turn this dubstep classic into a real bop.',
+            }
+        ],
+    }
+    
+]
+    
     // when we seed data, we usually clear out the db first
     // then create that data 
     // whether successful OR not, we want to close our db connection

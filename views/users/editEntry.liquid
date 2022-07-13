@@ -1,0 +1,19 @@
+{% block content %}
+
+<div class="card md-4 shadow entry">
+    <div class="card-body">
+        <strong>"{{entry.piece}}", {{entry.composer}}</strong>
+        <ul>
+            <li>{{entry.minutes}} minutes</li>
+            <li>Notes: {{entry.note}}</li>
+        </ul>
+        <div class="d-flex justify-content-between">
+            <small>author: {{username}}</small>
+            <form action='/entries/delete/{{practice._id}}/{{entry._id}}?_method=DELETE' method="POST">
+                <input class="delete" type="submit" value="X">
+            </form>
+        </div>
+    </div>    
+</div>
+
+{% endblock %}

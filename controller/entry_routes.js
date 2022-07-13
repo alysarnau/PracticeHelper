@@ -10,7 +10,6 @@ const Practice = require('../models/practice')
 router.post('/:practiceId', (req, res) => {
     const practiceId = req.params.practiceId;
     req.body.author = req.body.userId;
-    console.log('here is the req.body', req.body)
     Practice.findById(practiceId)
     .then(practice => {
         practice.entries.push(req.body);
@@ -22,7 +21,6 @@ router.post('/:practiceId', (req, res) => {
     .catch(err => {
         res.json(err)
     })
-
 })
 
 ////////////////////////////////

@@ -15,9 +15,20 @@ const router = express.Router()
 // List Routes
 ///////////////////////////////////////
 // GET - SIGNUP
+
+// TODO: if user is logged in, redirect to practices
+router.get('/home', (req, res) => {
+    if (req.session) {
+        res.render('/practices/')
+    }
+    res.render('users/home')
+})
+
+// GET - SIGNUP
 router.get('/signup', (req, res) => {
     res.render('users/signup')
 })
+
 // POST - DB REQUEST
 router.post('/signup', async (req, res) => {
     console.log('this is our initial request body', req.body)

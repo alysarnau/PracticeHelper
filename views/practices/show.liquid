@@ -6,9 +6,9 @@
         <h2>{{practice.date}}</h2>
         <h3>{{practice.instrument}}</h3>
         <div class="btn-group">
-            <a class="btn btn-primary" href="{{practice._id}}/edit">Edit Practice</a>
+            <a href="{{practice._id}}/edit"><button class="btn btn-primary">Edit Practice</button></a>
             <form action="/practices/{{practice._id}}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger">
+                <input type="submit" value="Delete" class="btn btn-danger" />
             </form>
         </div>
     </article>
@@ -16,7 +16,6 @@
         <form action="/entries/{{practice._id}}" method="POST">
             <fieldset>
                 <legend>Add Entry</legend>
-                <input type="text" class="form-control" name="instrument" id="instrument" placeholder="Enter your instrument here" />
                 <label class="form-label" for="piece">Piece: </label>
                 <input type="text" class="form-control" name="piece" id="piece" placeholder="Enter piece practiced here" />
                 <label class="form-label" for="composer">Composer: </label>
@@ -34,7 +33,6 @@
             <div class="col-md-8 col-lg-6">
                 {% for entry in practice.entries %}
                     {% render '../users/entry.liquid' entry: entry, userId: userId, practice: practice, username: username %}
-                    <!-- first one is the field declaration in comment.liquid, second is to match the comment on line 36 -->
                 {% endfor %}
             </div>
         </div>

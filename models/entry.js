@@ -6,7 +6,6 @@ const mongoose = require('./connection')
 const { Schema } = mongoose;
 
 const entrySchema = new mongoose.Schema({
-    instrument: String,
     piece: String,
     composer: String,
     minutes: Number,

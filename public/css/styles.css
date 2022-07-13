@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    font-family: 'Tinos', serif;
+}
+
+.btn {
+    border-radius: 25px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.navbar-brand,
+.display-6 {
+    font-family: 'Cinzel', serif;
+}
+
 .nav-link {
     margin: 5px;
 }

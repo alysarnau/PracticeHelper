@@ -29,8 +29,8 @@
         </form>
     </div>
     {% if practice.entries.length > 0 %}
-        <div class="container-sm justify-content-center">
-            <div class="col-md-8 col-lg-6">
+        <div class="container-md justify-content-center">
+            <div class="col-md-11 col-lg-11">
                 {% for entry in practice.entries %}
                     {% render '../users/entry.liquid' entry: entry, userId: userId, practice: practice, username: username %}
                 {% endfor %}

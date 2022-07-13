@@ -37,3 +37,27 @@ body {
 .entry {
     margin-top: 10px;
 }
+
+.card-body {
+    margin-bottom: 0px;
+}
+
+.btn-info {
+    margin-top: 0px;
+    font-size: 1.25em;
+}
+
+.card-header,
+#view-practice {
+    text-align: center;
+}
+
+.form-control {
+    width: 500px;
+}
+
+#index {
+    margin: 15px auto;
+    width: 300px;
+    font-size: 2em;
+}

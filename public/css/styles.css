@@ -3,6 +3,15 @@
 
 body {
     font-family: 'Tinos', serif;
+    background-color: #FCF5E5;
+}
+
+.container {
+    max-width: 600px;
+}
+
+.navbar {
+    background-color: #454545;
 }
 
 .btn {

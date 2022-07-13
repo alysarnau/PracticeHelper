@@ -1,5 +1,6 @@
 const { response } = require('express')
 const express = require('express')
+const moment = require('moment')
 const router = express.Router()
 const Practice = require('../models/practice')
 
@@ -73,10 +74,18 @@ router.post('/', (req,res) => {
 ////////////////////////////////
 // GET - index action
 ////////////////////////////////
-// TODO: SHOW RESULTS CHRONOLOGICALLY   
 router.get('/', (req, res) => {
     Practice.find({})
         .then(practices => {
+            // convert date for each item to date
+            practices.forEach((practice) => {
+                practice.date = new Date(practice.date)
+                practice.date = moment(practice.date).format('MMMM DD');
+            })
+            // sort practices chronologically
+            practices.sort(function(a,b){
+                return new Date(b.date) - new Date(a.date);
+            })
             res.render('practices/index', { practices })
         })
         .catch(err => {

@@ -23,6 +23,7 @@ body {
 .navbar-brand,
 .display-6 {
     font-family: 'Cinzel', serif;
+    font-weight: 700;
 }
 
 .nav-link {

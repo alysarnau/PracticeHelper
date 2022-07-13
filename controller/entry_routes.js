@@ -1,15 +1,12 @@
 const { response } = require('express')
 const express = require('express')
-// making a router
 const router = express.Router()
-// importing Practice model to access DB
 const Entry = require('../models/practice')
 const Practice = require('../models/practice')
 
-// POST - Creation
-// localhost:3000/practices/:practiceId <- a single practice can have many entries, remember!
-// put and post do the same thing - so this is a duplicate URL!
-// change to: localhost:3000/entries/:practiceId 
+////////////////////////////////
+// POST - Create Entry
+////////////////////////////////
 router.post('/:practiceId', (req, res) => {
     const practiceId = req.params.practiceId;
     req.body.author = req.body.userId;
@@ -28,15 +25,13 @@ router.post('/:practiceId', (req, res) => {
 
 })
 
-
-// DELETE - deletion
-// localhost:3000/entries/delete/:practiceId/:entryId
+////////////////////////////////
+// DELETE - Delete Entry
+////////////////////////////////
 router.delete('/delete/:practiceId/:entryId', (req,res) => {
     const practiceId = req.params.practiceId;
     const entryId = req.params.entryId;
-    // find a practice by its ID
-    Practice.findById(practiceId) // single practice doc will have many comments
-    // find this entry by its ID
+    Practice.findById(practiceId)
         .then(practice => {
             const entry = practice.entries.id(entryId)
             entry.remove()
@@ -50,7 +45,7 @@ router.delete('/delete/:practiceId/:entryId', (req,res) => {
         })
 })
 
-
-
-
+////////////////////////////////
+// Export router
+////////////////////////////////
 module.exports = router

@@ -16,9 +16,7 @@ router.post('/:practiceId', (req, res) => {
     console.log('here is the req.body', req.body)
     Practice.findById(practiceId)
     .then(practice => {
-        console.log('here is the req.body', req.body)
         practice.entries.push(req.body);
-        console.log('here are the practice entries', practice.entries)
         return practice.save()
     })
     .then(practice => {
@@ -34,8 +32,8 @@ router.post('/:practiceId', (req, res) => {
 // DELETE - deletion
 // localhost:3000/entries/delete/:practiceId/:entryId
 router.delete('/delete/:practiceId/:entryId', (req,res) => {
-    const practiceId = req.params.fruitId;
-    const entryId = req.params.commId;
+    const practiceId = req.params.practiceId;
+    const entryId = req.params.entryId;
     // find a practice by its ID
     Practice.findById(practiceId) // single practice doc will have many comments
     // find this entry by its ID
@@ -47,8 +45,9 @@ router.delete('/delete/:practiceId/:entryId', (req,res) => {
         .then(practice => {
             res.redirect(`/practices/${practiceId}`)
         })
-        .catch(err => console.log(err))
-
+        .catch(err => {
+            res.send(err)
+        })
 })
 
 

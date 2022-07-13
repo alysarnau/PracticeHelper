@@ -4,6 +4,7 @@
 <div class="container-md">
     <article>
         <h2>{{practice.date}}</h2>
+        <h3>{{practice.instrument}}</h3>
         <div class="btn-group">
             <a class="btn btn-primary" href="{{practice._id}}/edit">Edit Practice</a>
             <form action="/practices/{{practice._id}}?_method=DELETE" method="POST">
@@ -15,7 +16,6 @@
         <form action="/entries/{{practice._id}}" method="POST">
             <fieldset>
                 <legend>Add Entry</legend>
-                <label class="form-label" for="instrument">Instrument: </label>
                 <input type="text" class="form-control" name="instrument" id="instrument" placeholder="Enter your instrument here" />
                 <label class="form-label" for="piece">Piece: </label>
                 <input type="text" class="form-control" name="piece" id="piece" placeholder="Enter piece practiced here" />
@@ -23,10 +23,10 @@
                 <input type="text" class="form-control" name="composer" id="composer" placeholder="Enter composer here" />
                 <label class="form-label" for="minutes">Minutes Practiced: </label>
                 <input type="number" class="form-control" name="minutes" id="minutes" />
-                <label class="form-label" for="practice-entry">Note: </label>
-                <input type="text" class="form-control" name="practice-entry" id="note" placeholder="Enter your notes here" />
+                <label class="form-label" for="note">Note: </label>
+                <input type="text" class="form-control" name="note" id="note" placeholder="Enter your notes here" />
             </fieldset>
-            <input type="submit" class="btn btn-success" value="Add Comment">
+            <input type="submit" class="btn btn-success" value="Add Entry">
         </form>
     </div>
     {% if practice.entries.length > 0 %}

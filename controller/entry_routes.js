@@ -9,13 +9,16 @@ const Practice = require('../models/practice')
 // POST - Creation
 // localhost:3000/practices/:practiceId <- a single practice can have many entries, remember!
 // put and post do the same thing - so this is a duplicate URL!
-// change to: localhost:3000/comments/:practiceId 
+// change to: localhost:3000/entries/:practiceId 
 router.post('/:practiceId', (req, res) => {
-    const practiceId = req.params.fruitId;
+    const practiceId = req.params.practiceId;
     req.body.author = req.body.userId;
+    console.log('here is the req.body', req.body)
     Practice.findById(practiceId)
     .then(practice => {
+        console.log('here is the req.body', req.body)
         practice.entries.push(req.body);
+        console.log('here are the practice entries', practice.entries)
         return practice.save()
     })
     .then(practice => {

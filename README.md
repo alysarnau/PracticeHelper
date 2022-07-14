@@ -1,12 +1,13 @@
 # Practice Helper App
 
 # TODO:
-- Create dark mode
-- limit viewed practice entries to logged in user
 - create edit entry functionality (route + button)
-- hook up API (open opus)
 - center align show page
 - center align add entry page on show
+- limit viewed practice entries to logged in user
+- Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
+- hook up API (open opus)
+- enable search functionality w/API (update user stories)
 
 
 # Purpose

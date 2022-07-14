@@ -43,6 +43,39 @@ router.delete('/delete/:practiceId/:entryId', (req,res) => {
         })
 })
 
+// TODO: edit
+////////////////////////////////
+// GET - display an update form for entry
+////////////////////////////////
+router.get('/:practiceId/:entryId/edit', (req,res) => {
+    // query
+    const practiceID = req.params.practiceId;
+    const entryId = req.params.entryId
+    Entry.findById(entryId)
+        .then(entry => {
+            // this will show the edit form for the entry
+            res.render('users/editEntry.liquid', { entry })
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
+// TODO: edit
+// ////////////////////////////////
+// // PUT - Update the entry details
+// ////////////////////////////////
+// router.put('/:id', (req, res) => {
+//     const practiceID = req.params.id;
+//     Entry.findByIdAndUpdate(practiceID, req.body, { new: true })
+//         .then(practice => {
+//             res.redirect(`/practices/${practice._id}`)
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+// })
+
 ////////////////////////////////
 // Export router
 ////////////////////////////////

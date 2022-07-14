@@ -1,19 +1,20 @@
 {% block content %}
 
-<div class="card md-4 shadow entry">
-    <div class="card-body">
-        <strong>"{{entry.piece}}", {{entry.composer}}</strong>
-        <ul>
-            <li>{{entry.minutes}} minutes</li>
-            <li>Notes: {{entry.note}}</li>
-        </ul>
-        <div class="d-flex justify-content-between">
-            <small>author: {{username}}</small>
-            <form action='/entries/delete/{{practice._id}}/{{entry._id}}?_method=DELETE' method="POST">
-                <input class="delete" type="submit" value="X">
-            </form>
-        </div>
-    </div>    
+<div class="col-md-6">
+    <form action="/entries/{{practice._id}}/{{entry._id}}?_method=PUT" method="POST">
+        <fieldset>
+            <legend>Edit Entry</legend>
+            <label class="form-label" for="piece">Piece: </label>
+            <input type="text" class="form-control" name="piece" id="piece" value="{{entry.piece}}" />
+            <label class="form-label" for="composer">Composer: </label>
+            <input type="text" class="form-control" name="composer" id="composer" value="{{entry.composer}}" />
+            <label class="form-label" for="minutes">Minutes Practiced: </label>
+            <input type="number" class="form-control" name="minutes" id="minutes" value={{entry.minutes}}/>
+            <label class="form-label" for="note">Note: </label>
+            <input type="text" class="form-control" name="note" id="note" value="{{entry.notes}}" />
+        </fieldset>
+        <input type="submit" class="btn btn-success" value="Edit Entry">
+    </form>
 </div>
 
 {% endblock %}

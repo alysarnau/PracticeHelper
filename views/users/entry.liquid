@@ -2,17 +2,18 @@
 
 <div class="card md shadow entry">
     <div class="card-body">
+        <div class="delete-button">
+            <form action='/entries/delete/{{practice._id}}/{{entry._id}}?_method=DELETE' method="POST">
+                <input class="delete" type="submit" value="X">
+            </form>
+        </div>
         <strong>"{{entry.piece}}", {{entry.composer}}</strong>
         <ul>
             <li>{{entry.minutes}} minutes</li>
             <li>Notes: {{entry.note}}</li>
         </ul>
         <div class="d-flex justify-content-between">
-            <small>author: <br />{{username}}</small>
             <a class="btn btn-primary" href="/entries/{{practice._id}}/{{entry._id}}/edit">Edit Entry</a>
-            <form action='/entries/delete/{{practice._id}}/{{entry._id}}?_method=DELETE' method="POST">
-                <input class="delete" type="submit" value="X">
-            </form>
         </div>
     </div>    
 </div>

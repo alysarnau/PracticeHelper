@@ -1,11 +1,9 @@
 # Practice Helper App
 
 # TODO:
-- limit viewed practice entries to logged in user
-- greet user after login
-- redirect login page to practice page if already logged in
 - delete all entries in practice w button
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
+- #STRETCH
 - hook up API (open opus)
 - enable search functionality w/API (update user stories)
 

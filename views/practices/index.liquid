@@ -29,8 +29,11 @@
                         </ul>
                         {% endfor %}
                     </h6>  
-                    <div class="text-center">         
-                        <a href='/practices/{{practice._id}}' class="btn btn-info" id="view-practice">View Practice</a>
+                    <div class="text-center show-div">         
+                        <a href='/practices/{{practice._id}}' class="btn btn-info show-page" id="view-practice">View Practice</a>
+                        <form action="/practices/{{practice._id}}?_method=DELETE" method="POST">
+                            <input type="submit" value="Delete" class="show-page btn btn-danger ml-1 editGroup" />
+                        </form>
                     </div> 
                 </div>
             </div>

@@ -118,12 +118,14 @@ router.get('/mine', (req,res) => {
 ////////////////////////////////
 router.get('/:id', (req,res) => {
     const practiceID = req.params.id;
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
     Practice.findById(practiceID)
         .populate('entries.author')
         .then(practice => {
             const userId = req.session.userId
             const username = req.session.username
-            res.render('practices/show', { practice, userId, username })
+            res.render('practices/show', { practice, userId, user, loggedIn })
         })
         .catch(err => {
             res.json(err)

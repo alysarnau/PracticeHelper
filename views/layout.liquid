@@ -23,11 +23,11 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
-                            {% if loggedIn %}
+                            {% if loggedIn == true %}
                             <a href="/practices/new" class="nav-link text-light">New</a>
                             {% endif %}
                             <a href="/practices/" class="nav-link text-light">All Practice Entries</a>
-                            {% if loggedIn %}
+                            {% if loggedIn == true %}
                             <a href="/practices/mine" class="nav-link text-light">My Practice Entries</a>
                             {% endif %}
                             {% if loggedIn == false %}

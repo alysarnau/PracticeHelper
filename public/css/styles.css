@@ -103,3 +103,15 @@ article.text-center {
     color: white;
     font-style: italic;
 }
+
+.show-page {
+    font-size: 1.1em;
+    height: 40px;
+    width: 150px;
+}
+
+.delete-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}

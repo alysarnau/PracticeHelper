@@ -1,10 +1,11 @@
 # Practice Helper App
 
 # TODO:
-- create edit entry functionality (route + button)
+- limit viewed practice entries to logged in user
+- make log-out page - redirect to home page
+- delete all entries in practice
 - center align show page
 - center align add entry page on show
-- limit viewed practice entries to logged in user
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 - hook up API (open opus)
 - enable search functionality w/API (update user stories)
@@ -18,34 +19,34 @@ To improve as a musician, consistent practice is key! The best thing you can do 
     - new schema
     - create a model to use
     - return newly created Practice
-- Create/Post a note inside of a practice (2 routes in one!)
+- Create/Post an entry inside of a practice (2 routes in one!)
     - new schema
     - create a model to use
-    - link with API for open music so it will suggest what you're working on??
+    - STRETCH: link with API for open music so it will suggest what you're working on??
     - return newly created note inside the practice
 - View all practices
     - query all practices in collection - find()
     - return all practices
-- View all notes per practice
-    - query all notes in collection - find()
-    - return all notes
+- View all entry per practice
+    - query all entry in collection - find()
+    - return all entry
 - View single practice
     - query for single practice - findOne() .id / name?
     - return single correct practice
-- View single note
-    - query for single note - findOne() .id / name?
-    - return single correct note
+- View single entry
+    - query for single entry - findOne() .id / name?
+    - return single correct entry
 - Update/Post single practice (2 routes in one!)
     - query for single practice in collection - .id / name?
     - update that single practice
     - return updated practice
-- Update/Post single note inside practice (2 routes in one!)
-    - query for single note in collection - .id / name?
-    - update that single note inside practice
-    - return updated note
-- Delete a single note
-    - query for single note in collection - .id / name?
-    - delete or remove a single note
+- Update/Post single entry inside practice (2 routes in one!)
+    - query for single entry in collection - .id / name?
+    - update that single entry inside practice
+    - return updated entry
+- Delete a single entry
+    - query for single entry in collection - .id / name?
+    - delete or remove a single entry
     - return a success of some kind
 - Delete a single practice
     - query for single practice in collection - .id / name?

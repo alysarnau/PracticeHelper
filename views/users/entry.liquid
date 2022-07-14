@@ -8,7 +8,7 @@
             <li>Notes: {{entry.note}}</li>
         </ul>
         <div class="d-flex justify-content-between">
-            <small>author: {{username}}</small>
+            <small>author: <br />{{username}}</small>
             <a class="btn btn-primary" href="/entries/{{practice._id}}/{{entry._id}}/edit">Edit Entry</a>
             <form action='/entries/delete/{{practice._id}}/{{entry._id}}?_method=DELETE' method="POST">
                 <input class="delete" type="submit" value="X">

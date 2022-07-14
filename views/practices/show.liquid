@@ -2,17 +2,19 @@
 
 {% block content %}
 <div class="container-md">
-    <article>
+    <article class="text-center">
         <h2>{{practice.date}}</h2>
         <h3>{{practice.instrument}}</h3>
-        <div class="btn-group">
-            <a href="{{practice._id}}/edit"><button class="btn btn-primary">Edit Practice</button></a>
+        <div>
+            <a href="{{practice._id}}/edit"><button class="btn btn-primary editGroup">Edit Practice</button></a>
+        </div>
+        <div>
             <form action="/practices/{{practice._id}}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger" />
+                <input type="submit" value="Delete" class="btn btn-danger ml-1 editGroup" />
             </form>
         </div>
     </article>
-    <div class="col-md-6">
+    <div class="col-md">
         <form action="/entries/{{practice._id}}" method="POST">
             <fieldset>
                 <legend>Add Entry</legend>

@@ -18,9 +18,6 @@ const router = express.Router()
 
 // TODO: if user is logged in, redirect to practices
 router.get('/home', (req, res) => {
-    if (req.session) {
-        res.render('/practices/')
-    }
     res.render('users/home')
 })
 
@@ -88,7 +85,7 @@ router.get('/logout', (req, res) => {
         console.log('this is the error in logout', err)
         console.log('session has been destroyed')
         console.log(req.session)
-        res.redirect('/practices')
+        res.redirect('/users/home')
     })
 })
 

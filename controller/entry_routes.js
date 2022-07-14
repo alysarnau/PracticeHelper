@@ -43,7 +43,6 @@ router.delete('/delete/:practiceId/:entryId', (req,res) => {
         })
 })
 
-// TODO: edit
 ////////////////////////////////
 // GET - display an update form for entry
 ////////////////////////////////
@@ -64,7 +63,6 @@ router.get('/:practiceId/:entryId/edit', (req,res) => {
         })
 })
 
-// TODO: edit
 // ////////////////////////////////
 // // PUT - Update the entry details
 // ////////////////////////////////

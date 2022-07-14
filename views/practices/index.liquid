@@ -6,10 +6,10 @@
     <div class="text-center">
         <!-- TODO: FIX THIS -->
         {% if user%}
-        <div>Welcome back {{user}}! </div>
+        <div><h3>Welcome back, {{user}}!</h3></div>
         <a href='/practices/new' class="btn btn-success" id="index">Log New Practice</a>
         {% else %}
-        <div> Please log in! </div>
+        <div><h3>Please log in or sign up to log your practice.</h3></div>
         <a href='/users/home' class="btn btn-success" id="index">Sign Up or Log In</a>
         {% endif %}
     </div>

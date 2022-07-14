@@ -50,18 +50,13 @@ router.delete('/delete/:practiceId/:entryId', (req,res) => {
 router.get('/:practiceId/:entryId/edit', (req,res) => {
     // query
     const practiceId = req.params.practiceId;
-    console.log(practiceId)
     const entryId = req.params.entryId
-    console.log(entryId)
     Practice.findById(practiceId)
-        .then(Entry.findById(entryId))
-            .then(entry => {
+        .then(practice => {
+            const entry = practice.entries.id(entryId)
             // this will show the edit form for the entry
             console.log(entry)
             res.render('users/editEntry.liquid', { entry })
-            })
-            .catch(err => {
-                res.json(err)
             })
         .catch(err => {
             res.json(err)
@@ -72,16 +67,16 @@ router.get('/:practiceId/:entryId/edit', (req,res) => {
 // ////////////////////////////////
 // // PUT - Update the entry details
 // ////////////////////////////////
-// router.put('/:id', (req, res) => {
-//     const practiceID = req.params.id;
-//     Entry.findByIdAndUpdate(practiceID, req.body, { new: true })
-//         .then(practice => {
-//             res.redirect(`/practices/${practice._id}`)
-//         })
-//         .catch(err => {
-//             res.json(err)
-//         })
-// })
+router.put('/:practiceId', (req, res) => {
+    const practiceID = req.params.practiceId;
+    Entry.findByIdAndUpdate(practiceID, req.body, { new: true })
+        .then(practice => {
+            res.redirect(`/practices/${practice._id}`)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
 
 ////////////////////////////////
 // Export router

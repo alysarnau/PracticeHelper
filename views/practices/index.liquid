@@ -5,8 +5,8 @@
     <h2 class="display-6 text-center">All Practice Entries</h2>
     <div class="text-center">
         <!-- TODO: FIX THIS -->
-        {% if loggedIn == true %}
-        <div>Welcome back! </div>
+        {% if user%}
+        <div>Welcome back {{user}}! </div>
         <a href='/practices/new' class="btn btn-success" id="index">Log New Practice</a>
         {% else %}
         <div> Please log in! </div>

@@ -22,11 +22,13 @@ router.delete('/:id', (req,res) => {
 // GET - display an update form
 ////////////////////////////////
 router.get('/:id/edit', (req,res) => {
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
     // query
     const practiceID = req.params.id;
     Practice.findById(practiceID)
         .then(practice => {
-            res.render('practices/edit.liquid', { practice })
+            res.render('practices/edit.liquid', { practice, user, loggedIn })
         })
         .catch(err => {
             res.json(err)
@@ -75,6 +77,8 @@ router.post('/', (req,res) => {
 // GET - index action
 ////////////////////////////////
 router.get('/', (req, res) => {
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
     Practice.find({})
         .then(practices => {
             // convert date for each item to date
@@ -86,7 +90,7 @@ router.get('/', (req, res) => {
             practices.sort(function(a,b){
                 return new Date(b.date) - new Date(a.date);
             })
-            res.render('practices/index', { practices })
+            res.render('practices/index', {  practices, user, loggedIn  })
         })
         .catch(err => {
             res.json(err);
@@ -97,10 +101,11 @@ router.get('/', (req, res) => {
 // GET - Show - gets a specific practice and shows it to you
 ////////////////////////////////
 router.get('/mine', (req,res) => {
-    const username = req.session.username
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
     Practice.find({ owner: req.session.userId })
         .then(practices => {
-            res.render('practices/index', { practices, username })
+            res.render('practices/index', { practices, user, loggedIn })
         })
         .catch(err => {
             console.log(err)

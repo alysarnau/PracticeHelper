@@ -48,7 +48,7 @@ router.post('/signup', async (req, res) => {
 
 // GET - LOGIN
 router.get('/login', (req, res) => {
-    res.render('users/login')
+        res.render('users/login')
 })
 
 

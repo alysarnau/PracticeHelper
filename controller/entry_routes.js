@@ -76,12 +76,28 @@ router.put('/:practiceId/:entryId', (req, res) => {
     Practice.findById(practiceID)
         .then(practice => {
             const entry = practice.entries.id(entryId)
-            entry.piece = req.body.piece;
-            entry.composer = req.body.composer;
+            //entry.piece = req.body.piece;
+            //entry.composer = req.body.composer;
             // MINUTES IS WORKING!
             entry.minutes = req.body.minutes;
-            entry.note = req.body.note;
+            //entry.note = req.body.note;
             return practice.save()
+        })
+        .then(practice => {
+            const entry = practice.entries.id(entryId)
+            entry.piece = req.body.piece;
+            return practice.save()
+        })
+        .then(practice => {
+            const entry = practice.entries.id(entryId)
+            entry.composer = req.body.composer;            
+            return practice.save()
+        })
+        .then(practice => {
+            const entry = practice.entries.id(entryId)
+            entry.note = req.body.note;            
+            return practice.save()
+        })
         .then(practice => {
             res.redirect(`/practices/${practiceID}`)
         })
@@ -92,7 +108,7 @@ router.put('/:practiceId/:entryId', (req, res) => {
         res.json(err)
     })
 })
-})
+
 
 ////////////////////////////////
 // Export router

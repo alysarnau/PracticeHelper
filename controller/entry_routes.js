@@ -76,11 +76,7 @@ router.put('/:practiceId/:entryId', (req, res) => {
     Practice.findById(practiceID)
         .then(practice => {
             const entry = practice.entries.id(entryId)
-            //entry.piece = req.body.piece;
-            //entry.composer = req.body.composer;
-            // MINUTES IS WORKING!
             entry.minutes = req.body.minutes;
-            //entry.note = req.body.note;
             return practice.save()
         })
         .then(practice => {

@@ -78,7 +78,6 @@ router.put('/:practiceId/:entryId', (req, res) => {
             console.log(entry)
             Entry.findByIdAndUpdate(entryId, req.body, { new: true })
                 .then(practice => {
-                    practice.save()
                     res.redirect(`/practices/${practiceID}`)
                 })
             })

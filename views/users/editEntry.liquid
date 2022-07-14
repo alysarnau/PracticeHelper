@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="col-md-6">
+    <h2> TESTING: PRACTICE DATE {{practice.date}}</h2>
     <form action="/entries/{{practice._id}}/{{entry._id}}?_method=PUT" method="POST">
         <fieldset>
             <legend>Edit Entry</legend>
@@ -16,6 +17,7 @@
             <input type="text" class="form-control" name="note" id="note" value="{{entry.note}}" />
         </fieldset>
         <input type="submit" class="btn btn-success" value="Edit Entry">
+        <a href="/practices/{{practice._id}}" class="btn btn-danger">Go Back</a>
     </form>
 </div>
 

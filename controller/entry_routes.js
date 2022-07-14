@@ -54,9 +54,10 @@ router.get('/:practiceId/:entryId/edit', (req,res) => {
     Practice.findById(practiceId)
         .then(practice => {
             const entry = practice.entries.id(entryId)
+            console.log(practice)
             // this will show the edit form for the entry
-            console.log(entry)
-            res.render('users/editEntry.liquid', { entry })
+            //console.log(entry)
+            res.render('users/editEntry.liquid', { practice, entry })
             })
         .catch(err => {
             res.json(err)
@@ -67,15 +68,26 @@ router.get('/:practiceId/:entryId/edit', (req,res) => {
 // ////////////////////////////////
 // // PUT - Update the entry details
 // ////////////////////////////////
-router.put('/:practiceId', (req, res) => {
+router.put('/:practiceId/:entryId', (req, res) => {
+    // find practice by ID, update it's subdoc with what's in req.body
     const practiceID = req.params.practiceId;
-    Entry.findByIdAndUpdate(practiceID, req.body, { new: true })
+    const entryId = req.params.entryId
+    Practice.findById(practiceID)
         .then(practice => {
-            res.redirect(`/practices/${practice._id}`)
-        })
+            const entry = practice.entries.id(entryId)
+            console.log(entry)
+            Entry.findByIdAndUpdate(entryId, req.body, { new: true })
+                .then(practice => {
+                    practice.save()
+                    res.redirect(`/practices/${practiceID}`)
+                })
+            })
         .catch(err => {
             res.json(err)
         })
+    .catch(err => {
+        res.json(err)
+    })
 })
 
 ////////////////////////////////

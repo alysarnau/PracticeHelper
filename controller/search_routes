@@ -12,5 +12,22 @@ router.post('/:practiceId', (req, res) => {
     // this is the URL scheme we need for 
     const url = 'https://api.openopus.org/composer/list/search/'+searchTerm+'.json'
     req.body.author = req.body.userId;
-
+    let name;
+    let portrait;
+    let epoch;
+    request(url, function(err, response, body) {
+        if (err) {
+                res.render('search/index', { response: null, error: 'Error, please try again' });
+        } else {
+                let response = JSON.parse(body);
+                // TODO: CHANGE THIS
+                if (response.status.success == undefined) {
+                    res.render('index', { response: null, error: 'Error, please try again' });
+            } else {
+                    name = response.composers[0].name;
+                    portrait = response.composers[0].portrait;
+                    epoch = response.composers[0].epoch;
+        }
+    }
+    })
 })

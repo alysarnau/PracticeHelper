@@ -18,7 +18,8 @@ const router = express.Router()
 
 // TODO: if user is logged in, redirect to practices
 router.get('/home', (req, res) => {
-    res.render('users/home')
+    const session = req.session
+    res.render('users/home', { session })
 })
 
 // GET - SIGNUP
@@ -64,7 +65,7 @@ router.post('/login', async (req, res) => {
                     req.session.loggedIn = true;
                     req.session.userId = user._id;
                     console.log('this is the session after login', req.session);
-                    res.redirect('/practices')
+                    res.redirect('/practices/mine')
                 } else {
                     // TODO: otherwise(pw incorrect) send to error page
                     res.json({ error: 'username or password incorrect' });

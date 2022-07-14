@@ -97,9 +97,10 @@ router.get('/', (req, res) => {
 // GET - Show - gets a specific practice and shows it to you
 ////////////////////////////////
 router.get('/mine', (req,res) => {
+    const username = req.session.username
     Practice.find({ owner: req.session.userId })
         .then(practices => {
-            res.render('practices/index', { practices })
+            res.render('practices/index', { practices, username })
         })
         .catch(err => {
             console.log(err)

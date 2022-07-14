@@ -2,10 +2,9 @@
 
 # TODO:
 - limit viewed practice entries to logged in user
-- make log-out page - redirect to home page
-- delete all entries in practice
-- center align show page
-- center align add entry page on show
+- greet user after login
+- redirect login page to practice page if already logged in
+- delete all entries in practice w button
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 - hook up API (open opus)
 - enable search functionality w/API (update user stories)

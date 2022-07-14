@@ -4,7 +4,14 @@
 <div>
     <h2 class="display-6 text-center">All Practice Entries</h2>
     <div class="text-center">
+        <!-- TODO: FIX THIS -->
+        {% if loggedIn == true %}
+        <div>Welcome back! </div>
         <a href='/practices/new' class="btn btn-success" id="index">Log New Practice</a>
+        {% else %}
+        <div> Please log in! </div>
+        <a href='/users/home' class="btn btn-success" id="index">Sign Up or Log In</a>
+        {% endif %}
     </div>
     <div class="row">
         {% for practice in practices %}

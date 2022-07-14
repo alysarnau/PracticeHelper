@@ -72,21 +72,26 @@ router.put('/:practiceId/:entryId', (req, res) => {
     // find practice by ID, update it's subdoc with what's in req.body
     const practiceID = req.params.practiceId;
     const entryId = req.params.entryId
+    console.log(req.body)
     Practice.findById(practiceID)
         .then(practice => {
             const entry = practice.entries.id(entryId)
-            console.log(entry)
-            Entry.findByIdAndUpdate(entryId, req.body, { new: true })
-                .then(practice => {
-                    res.redirect(`/practices/${practiceID}`)
-                })
-            })
+            entry.piece = req.body.piece;
+            entry.composer = req.body.composer;
+            // MINUTES IS WORKING!
+            entry.minutes = req.body.minutes;
+            entry.note = req.body.note;
+            return practice.save()
+        .then(practice => {
+            res.redirect(`/practices/${practiceID}`)
+        })
         .catch(err => {
             res.json(err)
         })
     .catch(err => {
         res.json(err)
     })
+})
 })
 
 ////////////////////////////////

@@ -44,6 +44,28 @@ router.delete('/delete/:practiceId/:entryId', (req,res) => {
 })
 
 ////////////////////////////////
+// DELETE - Delete ALL Entries
+////////////////////////////////
+router.delete('/deleteAll/:practiceId', (req,res) => {
+    const practiceId = req.params.practiceId;
+    Practice.findById(practiceId)
+        .then(practice => {
+            const entries = practice.entries
+            console.log(entries)
+            if (entries.length > 0) {
+                entries.pop()
+            }
+            return practice.save()
+        })
+        .then(practice => {
+            res.redirect(`/practices/${practiceId}`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+})
+
+////////////////////////////////
 // GET - display an update form for entry
 ////////////////////////////////
 router.get('/:practiceId/:entryId/edit', (req,res) => {

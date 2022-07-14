@@ -41,20 +41,15 @@ app.use(
 
 // TRY THIS OUT
 function auth(req, res, next) {
-    // Checking for the session
-    console.log(req.session)
 	let loggedIn;
 	let user;
     // Checking for the authorization
     if (req.session.username) {
 		loggedIn = true;
 		user = req.session.username
-		console.log('logged in?', loggedIn)
-		console.log('welcome ', user)
 		next()
 	} else {
 		loggedIn = false;
-		console.log('logged in?', loggedIn)
 		next()
 	}
 }

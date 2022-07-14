@@ -1,7 +1,6 @@
 # Practice Helper App
 
 # TODO:
-- delete all entries in practice w button
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 - #STRETCH
 - hook up API (open opus)

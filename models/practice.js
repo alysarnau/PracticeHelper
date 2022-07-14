@@ -32,14 +32,3 @@ const practiceSchema = new Schema({
 const Practice = model('Practice', practiceSchema)
 
 module.exports = Practice
-
-// started my server
-    // .env with port number
-    // npm start
-// connection.js
-    // mongoose to hook up
-// mongoDB
-    // db_uri
-// fruits.js
-    // using mongoose to create a schema
-    // use that schema to create a model

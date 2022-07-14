@@ -49,13 +49,20 @@ router.delete('/delete/:practiceId/:entryId', (req,res) => {
 ////////////////////////////////
 router.get('/:practiceId/:entryId/edit', (req,res) => {
     // query
-    const practiceID = req.params.practiceId;
+    const practiceId = req.params.practiceId;
+    console.log(practiceId)
     const entryId = req.params.entryId
-    Entry.findById(entryId)
-        .then(entry => {
+    console.log(entryId)
+    Practice.findById(practiceId)
+        .then(Entry.findById(entryId))
+            .then(entry => {
             // this will show the edit form for the entry
+            console.log(entry)
             res.render('users/editEntry.liquid', { entry })
-        })
+            })
+            .catch(err => {
+                res.json(err)
+            })
         .catch(err => {
             res.json(err)
         })

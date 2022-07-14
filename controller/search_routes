@@ -1,0 +1,16 @@
+const { response } = require('express')
+const express = require('express')
+const router = express.Router()
+const Entry = require('../models/practice')
+const Practice = require('../models/practice')
+
+// TODO: set up search post function
+////////////////////////////////
+// POST - Create Entry
+////////////////////////////////
+router.post('/:practiceId', (req, res) => {
+    // this is the URL scheme we need for 
+    const url = 'https://api.openopus.org/composer/list/search/'+searchTerm+'.json'
+    req.body.author = req.body.userId;
+
+})

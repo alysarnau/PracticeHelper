@@ -6,6 +6,7 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const session = require('express-session')
 const Practice = require('../models/practice')
+const Entry = require('../models/practice')
 
 ///////////////////////////////////////
 // Create a router
@@ -96,10 +97,63 @@ router.get('/report', (req,res) => {
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     let totalMinutes = 0;
+    Practice.find({ })
+        .then(practices => {
+            res.render('users/report', { practices, user, loggedIn, totalMinutes })
+        })
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+        })
+})
+
+// GET - Reporting MINE
+router.get('/report/mine', (req,res) => {
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
+    let totalMinutes = 0;
     Practice.find({ owner: req.session.userId })
         .then(practices => {
             res.render('users/report', { practices, user, loggedIn, totalMinutes })
         })
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+        })
+})
+
+////////////////////////////////
+// GET - Show - gets reporting search input and shows it to you
+////////////////////////////////
+// TODO: change
+router.get('/report/composer/:searchQuery', (req,res) => {
+    //
+    let totalMinutes = 0;
+    const searchQuery = req.params.searchQuery;
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
+    const searchFormula = `[{$project:{
+        entries: {
+            $filter: {
+                input: '$entries',
+                as: 'entry',
+                cond: { $eq: ['$$entry.composer', '${searchQuery}'] }
+            }
+        }
+    } }]`
+    Practice.find({ searchFormula })
+    // to edit
+        .then(practices => {
+            console.log(practices)
+            // we want to check each practice's entries
+            // and for each entry in entries, we want to see if the composer = search query
+
+// db.practices.aggregate({$project:{entries: {$filter: {input: '$entries',as: 'entry', cond: { $eq: ['$$entry.composer', 'Chopin'] } }    }} })
+
+            // if it does, we want to return that entry
+            res.render('users/report', { practices, user, loggedIn, totalMinutes })
+            }
+        )
         .catch(err => {
             console.log(err)
             res.json({ err })

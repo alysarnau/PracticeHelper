@@ -1,8 +1,11 @@
 # Practice Helper App
 
 # TODO:
+- UPDATE USER STORIES for reporting
+- allow to search by composer
+- allow to search by title
+- allow to search by date
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
-- enable practice total reporting
 
 
 # Purpose

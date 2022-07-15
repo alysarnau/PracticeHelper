@@ -90,6 +90,11 @@ router.get('/logout', (req, res) => {
     })
 })
 
+// GET - Reporting
+router.get('/report', (req, res) => {
+    res.render('users/report')
+})
+
 ///////////////////////////////////////
 // export our router
 ///////////////////////////////////////

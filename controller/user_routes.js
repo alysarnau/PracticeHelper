@@ -95,9 +95,10 @@ router.get('/logout', (req, res) => {
 router.get('/report', (req,res) => {
     const user = req.session.username
     const loggedIn = req.session.loggedIn
+    let totalMinutes = 0;
     Practice.find({ owner: req.session.userId })
         .then(practices => {
-            res.render('users/report', { practices, user, loggedIn })
+            res.render('users/report', { practices, user, loggedIn, totalMinutes })
         })
         .catch(err => {
             console.log(err)

@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container-md">
-    <p>This is the reporting page for {{user}}!</p> 
+    <h2 class="text-center">{{user}} Practice Review</h2> 
     <table class="table table-striped">
         <tr>
             <th>Date</th>
@@ -16,10 +16,17 @@
             {% for entry in practice.entries %}
                 <td>{{entry.piece}}</td>
                 <td>{{entry.composer}}</td>
-                <td>{{entry.minutes}}</td>
+                <td class="countMe">{{entry.minutes}}</td>
+                {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
         </tr>
             {% endfor %}
             {% endfor %}
+        <tr class="table-info">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{totalMinutes}}</td>
+        </tr>
     </table>
     <div class="text-center">
         <a href="../practices/mine">Go Back</a>

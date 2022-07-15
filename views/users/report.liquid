@@ -2,9 +2,27 @@
 {% block content %}
 
 <div class="container-md">
-    <p>This is the reporting page!</p> 
-    <div>
-        <a href="../practices">go back?</a>
+    <p>This is the reporting page for {{user}}!</p> 
+    <table class="table table-striped">
+        <tr>
+            <th>Date</th>
+            <th>Piece</th>
+            <th>Composer</th>
+            <th>Minutes</th>
+        </tr>
+        {% for practice in practices %}
+        <tr>
+            <td>{{practice.date}}</td>
+            {% for entry in practice.entries %}
+                <td>{{entry.piece}}</td>
+                <td>{{entry.composer}}</td>
+                <td>{{entry.minutes}}</td>
+        </tr>
+            {% endfor %}
+            {% endfor %}
+    </table>
+    <div class="text-center">
+        <a href="../practices/mine">Go Back</a>
     </div>    
 </div>
 

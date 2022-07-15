@@ -5,6 +5,7 @@ const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const session = require('express-session')
+const Practice = require('../models/practice')
 
 ///////////////////////////////////////
 // Create a router
@@ -91,8 +92,17 @@ router.get('/logout', (req, res) => {
 })
 
 // GET - Reporting
-router.get('/report', (req, res) => {
-    res.render('users/report')
+router.get('/report', (req,res) => {
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
+    Practice.find({ owner: req.session.userId })
+        .then(practices => {
+            res.render('users/report', { practices, user, loggedIn })
+        })
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+        })
 })
 
 ///////////////////////////////////////

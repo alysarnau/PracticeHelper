@@ -152,6 +152,7 @@ router.get('/report/mine/range', (req,res) => {
     const loggedIn = req.session.loggedIn
     let instrumentArray = []
     let uniqueInstruments = []
+    if (instrument == 'all') {
     Practice.find({ date:{$gte:(startDate),$lt:(endDate)} })
         .then(practices => {
                         // convert date for each item to date
@@ -173,7 +174,31 @@ router.get('/report/mine/range', (req,res) => {
             console.log(err)
             res.json({ err })
     })
+    } else {
+        Practice.find({ $and: [{date:{$gte:(startDate),$lt:(endDate)}}, {instrument:{$eq:(instrument)}}] })
+        .then(practices => {
+                        // convert date for each item to date
+                        practices.forEach((practice) => {
+                            practice.date = new Date(practice.date)
+                            practice.date = moment(practice.date).format('MMMM DD');
+                            instrumentArray.push(practice.instrument)
+                        })
+                        // sort practices chronologically
+                        practices.sort(function(a,b){
+                            return new Date(a.date) - new Date(b.date);
+                        })
+                        uniqueInstruments = [...new Set(instrumentArray)]
+                        console.log(uniqueInstruments)
+            res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece, instrument, uniqueInstruments })
+            }
+        )
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+    })
+    }
 })
+
 
 ///////////////////////////////////////
 // export our router

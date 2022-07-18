@@ -9,7 +9,6 @@
     {% else %}
     <h2 class="text-center">All Practice Review</h2>
     {% endif %}
-    /////// {{uniqueInstruments}} ////
     <table class="table table-striped">
         <tr>
             <th>Date</th>
@@ -63,9 +62,10 @@
                     name="instrument" 
                     id="instrument" 
                 >
-                    <!-- {% for practice in practices %}
-                        <option value="{{practice.instrument}}">{{practice.instrument}}</option>
-                    {% endfor %} -->
+                    <option value="all">All Instruments</option>
+                    {% for instrument in uniqueInstruments %}
+                        <option value="{{instrument}}">{{instrument}}</option>
+                    {% endfor %}
                 </select>
                 <label class="form-label" for="composer">Composer:</label>
                 <input 

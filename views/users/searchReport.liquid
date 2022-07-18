@@ -96,14 +96,18 @@
                     id="endDate" 
                     value="2024-01-01"
                 >
-                <!-- <label class="form-label" for="instrument">Instrument:</label>
-                <input 
+                <label class="form-label" for="instrument">Instrument:</label>
+                <select 
                     class="form-control instrumentSearch" 
                     type="text" 
                     name="instrument" 
                     id="instrument" 
-                    placeholder="Search Instrument Here"
-                >    -->
+                >
+                    <option value="all">All Instruments</option>
+                    {% for instrument in uniqueInstruments %}
+                        <option value="{{instrument}}">{{instrument}}</option>
+                    {% endfor %}
+                </select>
                 <label class="form-label" for="composer">Composer:</label>
                 <input 
                     class="form-control composerSearch" 

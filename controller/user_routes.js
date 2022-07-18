@@ -128,8 +128,8 @@ router.get('/report/mine', (req,res) => {
             practices.sort(function(a,b){
                 return new Date(a.date) - new Date(b.date);
             })
-            uniqueInstruments = [...new Set(instrumentArray)]
-            res.render('users/report', { practices, user, loggedIn, totalMinutes })
+            uniqueInstruments = Array.from(new Set(instrumentArray))
+            res.render('users/report', { practices, user, loggedIn, totalMinutes, uniqueInstruments })
         })
         .catch(err => {
             console.log(err)
@@ -165,6 +165,7 @@ router.get('/report/mine/range', (req,res) => {
                             return new Date(a.date) - new Date(b.date);
                         })
                         uniqueInstruments = [...new Set(instrumentArray)]
+                        console.log(uniqueInstruments)
             res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece, instrument, uniqueInstruments })
             }
         )

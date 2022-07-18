@@ -8,6 +8,7 @@ const session = require('express-session')
 const Practice = require('../models/practice')
 const Entry = require('../models/practice')
 const moment = require('moment')
+const url = require('url')
 
 ///////////////////////////////////////
 // Create a router
@@ -113,10 +114,6 @@ router.get('/report/mine', (req,res) => {
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     let totalMinutes = 0;
-    // for search capability
-    let startDate;
-    let endDate;
-    //
     Practice.find({ owner: req.session.userId })
         .then(practices => {
             // convert date for each item to date
@@ -143,17 +140,26 @@ router.get('/report/mine', (req,res) => {
 // TODO: change
 // BASIC FUNCTIONALITY WORKS! now just need to hook it up to date range
 router.get('/report/mine/range', (req,res) => {
-    //
     let totalMinutes = 0;
+    const queryObject = url.parse(req.url,true).query
+    console.log('here is the query object', queryObject)
     //
-    let startDate = "2022-07-05";
-    let endDate = "2022-07-16";
+    let startDate = queryObject.startDate;
+    let endDate = queryObject.endDate;
     //
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     Practice.find({ date:{$gte:(startDate),$lt:(endDate)} })
-    // to edit
         .then(practices => {
+                        // convert date for each item to date
+                        practices.forEach((practice) => {
+                            practice.date = new Date(practice.date)
+                            practice.date = moment(practice.date).format('MMMM DD');
+                        })
+                        // sort practices chronologically
+                        practices.sort(function(a,b){
+                            return new Date(a.date) - new Date(b.date);
+                        })
             console.log(practices)
             // we want to check each practice's entries
             // and for each entry in entries, we want to see if the composer = search query

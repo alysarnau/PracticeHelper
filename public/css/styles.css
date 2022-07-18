@@ -115,3 +115,7 @@ article.text-center {
     right: 5px;
     top: 5px;
 }
+
+#filterPractice {
+    margin: 10px auto;
+}

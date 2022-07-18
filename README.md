@@ -7,7 +7,7 @@
         // HAVE IT SO THAT IF SEARCH QUERY DOESN'T MATCH COMPOSER (desired filter) don't include it
         // then it won't be included in the numbers?  
 - allow to search by title
-- allow to search by date
+- allow to search by instrument
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 
 
@@ -56,7 +56,13 @@ To improve as a musician, consistent practice is key! The best thing you can do 
     - query for all notes in practice - .id
     - delete/remove ALL notes
     - return a success of some kind
-- View collection of stats for all user's practice stats
+- View collection of stats for all user's practice stats (by DATE)
+    - query for practices within a certain date range
+    - return practices within that range
+- View collection of stats for all user's practice stats (by COMPOSER)
+    - query for entries with a certain composer
+    - return practices entries with that composer
+
 
 
 # Whiteboard

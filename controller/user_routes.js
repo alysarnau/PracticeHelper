@@ -143,10 +143,10 @@ router.get('/report/mine/range', (req,res) => {
     let totalMinutes = 0;
     const queryObject = url.parse(req.url,true).query
     console.log('here is the query object', queryObject)
-    //
     let startDate = queryObject.startDate;
     let endDate = queryObject.endDate;
-    //
+    let composer = queryObject.composer;
+    let piece = queryObject.piece;
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     Practice.find({ date:{$gte:(startDate),$lt:(endDate)} })
@@ -160,11 +160,12 @@ router.get('/report/mine/range', (req,res) => {
                         practices.sort(function(a,b){
                             return new Date(a.date) - new Date(b.date);
                         })
-            console.log(practices)
+            //console.log(practices)
+
             // we want to check each practice's entries
             // and for each entry in entries, we want to see if the composer = search query
             // if it does, we want to return that entry
-            res.render('users/report', { practices, user, loggedIn, totalMinutes })
+            res.render('users/report', { practices, user, loggedIn, totalMinutes, composer, piece })
             }
         )
         .catch(err => {

@@ -98,13 +98,21 @@ router.get('/', (req, res) => {
 })
 
 ////////////////////////////////
-// GET - Show - gets a specific practice and shows it to you
+// GET - Show - gets a specific practices and shows it to you
 ////////////////////////////////
 router.get('/mine', (req,res) => {
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     Practice.find({ owner: req.session.userId })
         .then(practices => {
+            practices.forEach((practice) => {
+                practice.date = new Date(practice.date)
+                practice.date = moment(practice.date).format('MMMM DD');
+            })
+            // sort practices chronologically
+            practices.sort(function(a,b){
+                return new Date(b.date) - new Date(a.date);
+            })
             res.render('practices/index', { practices, user, loggedIn })
         })
         .catch(err => {

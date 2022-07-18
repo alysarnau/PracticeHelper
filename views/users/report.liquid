@@ -18,7 +18,14 @@
         </tr>
         {% for practice in practices %}
         <tr>{% for entry in practice.entries %}
-            {% if composer %}
+            {% if composer=='' and piece=='' %}
+                <td>{{practice.date}}</td>
+                <td>{{entry.piece}}</td>
+                <td>{{entry.composer}}</td>
+                <td class="countMe">{{entry.minutes}}</td>
+                {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
+            <!-- if there is only a composer -->
+            {% elsif composer!='' and piece==''%}
                 {% if entry.composer == composer%}
                     <td>{{practice.date}}</td>
                     <td>{{entry.piece}}</td>
@@ -26,6 +33,25 @@
                     <td class="countMe">{{entry.minutes}}</td>
                     {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
                 {% endif %}
+            <!-- if there is only a piece -->
+            {% elsif piece!='' and composer=='' %}
+                {% if entry.piece == piece%}
+                    <td>{{practice.date}}</td>
+                    <td>{{entry.piece}}</td>
+                    <td>{{entry.composer}}</td>
+                    <td class="countMe">{{entry.minutes}}</td>
+                    {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
+                {% endif %}
+            <!-- if there is a composer AND a piece -->
+            {% elsif piece!='' and composer!='' %}
+                {% if entry.piece == piece and entry.composer == composer%}
+                    <td>{{practice.date}}</td>
+                    <td>{{entry.piece}}</td>
+                    <td>{{entry.composer}}</td>
+                    <td class="countMe">{{entry.minutes}}</td>
+                    {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
+                {% endif %}
+            <!-- if there are not a composer nor a piece -->
             {% else %}
                 <td>{{practice.date}}</td>
                 <td>{{entry.piece}}</td>

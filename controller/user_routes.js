@@ -147,6 +147,8 @@ router.get('/report/mine/range', (req,res) => {
     let piece = queryObject.piece;
     const user = req.session.username
     const loggedIn = req.session.loggedIn
+    console.log('composer', composer)
+    console.log('piece', piece)
     if (composer==""){
         console.log('Empty composer!')
     }
@@ -174,6 +176,27 @@ router.get('/report/mine/range', (req,res) => {
         })
     } else if ((composer!="") && (piece=="")) {
         console.log('composer exists!')
+        Practice.find({ $and: [ {date: {$gte:(startDate),$lt:(endDate)}}, {composer: {$eq:(composer)}}] })
+        //
+        .then(practices => {
+                        // convert date for each item to date
+                        practices.forEach((practice) => {
+                            practice.date = new Date(practice.date)
+                            practice.date = moment(practice.date).format('MMMM DD');
+                        })
+                        // sort practices chronologically
+                        practices.sort(function(a,b){
+                            return new Date(a.date) - new Date(b.date);
+                        })
+            res.render('users/report', { practices, user, loggedIn, totalMinutes, composer, piece })
+            }
+        )
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+        })
+    } else if ((composer=="") && (piece!="")) {
+        console.log('piece exists!')
         Practice.find({ $and: [ {date: {$gte:(startDate),$lt:(endDate)}}, {composer: {$eq:(composer)}}] })
         //
         .then(practices => {

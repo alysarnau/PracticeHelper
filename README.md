@@ -1,12 +1,6 @@
 # Practice Helper App
 
 # TODO:
-- UPDATE USER STORIES for reporting
-- allow to search by composer
-    // POTENTIAL FIX TO ENTRY PROBLEM:
-        // HAVE IT SO THAT IF SEARCH QUERY DOESN'T MATCH COMPOSER (desired filter) don't include it
-        // then it won't be included in the numbers?  
-- allow to search by title
 - allow to search by instrument
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 
@@ -22,7 +16,6 @@ To improve as a musician, consistent practice is key! The best thing you can do 
 - Create/Post an entry inside of a practice (2 routes in one!)
     - new schema
     - create a model to use
-    - STRETCH: link with API for open music so it will suggest what you're working on??
     - return newly created note inside the practice
 - View all practices
     - query all practices in collection - find()
@@ -107,3 +100,7 @@ ERD
 | Edit     | /practice/:id/edit |    GET    | Shows edit form for one practice post |
 | Update   | /practice/:id      |    PUT    | Updates a particular practice post    |
 | Destroy  | /practice/:id      |  DELETE   | Deletes a particular practice post    |
+
+# STRETCH GOALS
+- Add a field to User Schema where you can add in favorite composers/pieces
+- Implement external API so you can create a favorite composers list

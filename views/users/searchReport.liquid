@@ -12,6 +12,7 @@
     <table class="table table-striped">
         <tr>
             <th>Date</th>
+            <th>Instrument</th>
             <th>Piece</th>
             <th>Composer</th>
             <th>Minutes</th>
@@ -20,6 +21,7 @@
         <tr>{% for entry in practice.entries %}
             {% if composer=='' and piece=='' %}
                 <td>{{practice.date}}</td>
+                <td>{{practice.instrument}}</td>
                 <td>{{entry.piece}}</td>
                 <td>{{entry.composer}}</td>
                 <td class="countMe">{{entry.minutes}}</td>
@@ -28,6 +30,7 @@
             {% elsif composer!='' and piece==''%}
                 {% if entry.composer == composer%}
                     <td>{{practice.date}}</td>
+                    <td>{{practice.instrument}}</td>
                     <td>{{entry.piece}}</td>
                     <td>{{entry.composer}}</td>
                     <td class="countMe">{{entry.minutes}}</td>
@@ -37,6 +40,7 @@
             {% elsif piece!='' and composer=='' %}
                 {% if entry.piece == piece%}
                     <td>{{practice.date}}</td>
+                    <td>{{practice.instrument}}</td>
                     <td>{{entry.piece}}</td>
                     <td>{{entry.composer}}</td>
                     <td class="countMe">{{entry.minutes}}</td>
@@ -46,6 +50,7 @@
             {% elsif piece!='' and composer!='' %}
                 {% if entry.piece == piece and entry.composer == composer%}
                     <td>{{practice.date}}</td>
+                    <td>{{practice.instrument}}</td>
                     <td>{{entry.piece}}</td>
                     <td>{{entry.composer}}</td>
                     <td class="countMe">{{entry.minutes}}</td>
@@ -54,6 +59,7 @@
             <!-- if there are not a composer nor a piece -->
             {% else %}
                 <td>{{practice.date}}</td>
+                <td>{{practice.instrument}}</td>
                 <td>{{entry.piece}}</td>
                 <td>{{entry.composer}}</td>
                 <td class="countMe">{{entry.minutes}}</td>
@@ -63,6 +69,7 @@
             {% endfor %}
             {% endfor %}
         <tr class="table-info">
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

@@ -53,9 +53,9 @@ router.put('/:id', (req, res) => {
 // GET route for displaying form for create
 ////////////////////////////////
 router.get('/new', (req, res) => {
-    const username = req.session.username;
+    const user = req.session.username;
     const loggedIn = req.session.loggedIn;
-    res.render('practices/new', {username, loggedIn})
+    res.render('practices/new', {user, loggedIn})
 })
 
 ////////////////////////////////

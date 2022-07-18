@@ -9,6 +9,7 @@
     {% else %}
     <h2 class="text-center">All Practice Review</h2>
     {% endif %}
+    /////// {{uniqueInstruments}} ////
     <table class="table table-striped">
         <tr>
             <th>Date</th>
@@ -47,7 +48,7 @@
                     id="startDate" 
                     value="2022-01-01"
                 >
-                <label class="form-label" for="instrument">End Date:</label>
+                <label class="form-label" for="endDate">End Date:</label>
                 <input 
                     class="form-control filterDate" 
                     type="date" 
@@ -55,14 +56,25 @@
                     id="endDate" 
                     value="2024-01-01"
                 >
-                    <label class="form-label" for="composer">Composer:</label>
-                    <input 
-                        class="form-control composerSearch" 
-                        type="text" 
-                        name="composer" 
-                        id="composer" 
-                        placeholder="Search Composer Here"
-                    >
+                <label class="form-label" for="instrument">Instrument:</label>
+                <select 
+                    class="form-control instrumentSearch" 
+                    type="text" 
+                    name="instrument" 
+                    id="instrument" 
+                >
+                    <!-- {% for practice in practices %}
+                        <option value="{{practice.instrument}}">{{practice.instrument}}</option>
+                    {% endfor %} -->
+                </select>
+                <label class="form-label" for="composer">Composer:</label>
+                <input 
+                    class="form-control composerSearch" 
+                    type="text" 
+                    name="composer" 
+                    id="composer" 
+                    placeholder="Search Composer Here"
+                >
                 <label class="form-label" for="piece">Piece:</label>
                 <input 
                     class="form-control pieceSearch" 

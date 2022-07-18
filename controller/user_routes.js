@@ -114,18 +114,21 @@ router.get('/report/mine', (req,res) => {
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     let totalMinutes = 0;
+    let instrumentArray = []
+    let uniqueInstruments = []
     Practice.find({ owner: req.session.userId })
         .then(practices => {
             // convert date for each item to date
             practices.forEach((practice) => {
                 practice.date = new Date(practice.date)
                 practice.date = moment(practice.date).format('MMMM DD');
+                instrumentArray.push(practice.instrument)
             })
             // sort practices chronologically
             practices.sort(function(a,b){
                 return new Date(a.date) - new Date(b.date);
             })
-            ///
+            uniqueInstruments = [...new Set(instrumentArray)]
             res.render('users/report', { practices, user, loggedIn, totalMinutes })
         })
         .catch(err => {
@@ -144,20 +147,25 @@ router.get('/report/mine/range', (req,res) => {
     let endDate = queryObject.endDate;
     let composer = queryObject.composer;
     let piece = queryObject.piece;
+    let instrument = queryObject.instrument;
     const user = req.session.username
     const loggedIn = req.session.loggedIn
+    let instrumentArray = []
+    let uniqueInstruments = []
     Practice.find({ date:{$gte:(startDate),$lt:(endDate)} })
         .then(practices => {
                         // convert date for each item to date
                         practices.forEach((practice) => {
                             practice.date = new Date(practice.date)
                             practice.date = moment(practice.date).format('MMMM DD');
+                            instrumentArray.push(practice.instrument)
                         })
                         // sort practices chronologically
                         practices.sort(function(a,b){
                             return new Date(a.date) - new Date(b.date);
                         })
-            res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece })
+                        uniqueInstruments = [...new Set(instrumentArray)]
+            res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece, instrument, uniqueInstruments })
             }
         )
         .catch(err => {

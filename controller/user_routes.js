@@ -113,6 +113,10 @@ router.get('/report/mine', (req,res) => {
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     let totalMinutes = 0;
+    // for search capability
+    let startDate;
+    let endDate;
+    //
     Practice.find({ owner: req.session.userId })
         .then(practices => {
             // convert date for each item to date
@@ -137,30 +141,22 @@ router.get('/report/mine', (req,res) => {
 // GET - Show - gets reporting search input and shows it to you
 ////////////////////////////////
 // TODO: change
-router.get('/report/composer/:searchQuery', (req,res) => {
+// BASIC FUNCTIONALITY WORKS! now just need to hook it up to date range
+router.get('/report/mine/range', (req,res) => {
     //
     let totalMinutes = 0;
-    const searchQuery = req.params.searchQuery;
+    //
+    let startDate = "2022-07-05";
+    let endDate = "2022-07-16";
+    //
     const user = req.session.username
     const loggedIn = req.session.loggedIn
-    const searchFormula = `[{$project:{
-        entries: {
-            $filter: {
-                input: '$entries',
-                as: 'entry',
-                cond: { $eq: ['$$entry.composer', '${searchQuery}'] }
-            }
-        }
-    } }]`
-    Practice.find({ searchFormula })
+    Practice.find({ date:{$gte:(startDate),$lt:(endDate)} })
     // to edit
         .then(practices => {
             console.log(practices)
             // we want to check each practice's entries
             // and for each entry in entries, we want to see if the composer = search query
-
-// db.practices.aggregate({$project:{entries: {$filter: {input: '$entries',as: 'entry', cond: { $eq: ['$$entry.composer', 'Chopin'] } }    }} })
-
             // if it does, we want to return that entry
             res.render('users/report', { practices, user, loggedIn, totalMinutes })
             }

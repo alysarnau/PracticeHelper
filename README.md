@@ -3,6 +3,9 @@
 # TODO:
 - UPDATE USER STORIES for reporting
 - allow to search by composer
+    // POTENTIAL FIX TO ENTRY PROBLEM:
+        // HAVE IT SO THAT IF SEARCH QUERY DOESN'T MATCH COMPOSER (desired filter) don't include it
+        // then it won't be included in the numbers?  
 - allow to search by title
 - allow to search by date
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)

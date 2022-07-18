@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs')
 const session = require('express-session')
 const Practice = require('../models/practice')
 const Entry = require('../models/practice')
+const moment = require('moment')
 
 ///////////////////////////////////////
 // Create a router
@@ -114,6 +115,16 @@ router.get('/report/mine', (req,res) => {
     let totalMinutes = 0;
     Practice.find({ owner: req.session.userId })
         .then(practices => {
+            // convert date for each item to date
+            practices.forEach((practice) => {
+                practice.date = new Date(practice.date)
+                practice.date = moment(practice.date).format('MMMM DD');
+            })
+            // sort practices chronologically
+            practices.sort(function(a,b){
+                return new Date(a.date) - new Date(b.date);
+            })
+            ///
             res.render('users/report', { practices, user, loggedIn, totalMinutes })
         })
         .catch(err => {

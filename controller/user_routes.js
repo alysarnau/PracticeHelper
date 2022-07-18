@@ -140,94 +140,6 @@ router.get('/report/mine', (req,res) => {
 router.get('/report/mine/range', (req,res) => {
     let totalMinutes = 0;
     const queryObject = url.parse(req.url,true).query
-    console.log('here is the query object', queryObject)
-    let startDate = queryObject.startDate;
-    let endDate = queryObject.endDate;
-    let composer = queryObject.composer;
-    let piece = queryObject.piece;
-    const user = req.session.username
-    const loggedIn = req.session.loggedIn
-    console.log('composer', composer)
-    console.log('piece', piece)
-    if (composer==""){
-        console.log('Empty composer!')
-    }
-    if (piece==''){
-        console.log('empty piece')
-    }
-    if ((composer=="") && (piece=="")) {
-        Practice.find({ date:{$gte:(startDate),$lt:(endDate)} })
-            .then(practices => {
-                            // convert date for each item to date
-                            practices.forEach((practice) => {
-                                practice.date = new Date(practice.date)
-                                practice.date = moment(practice.date).format('MMMM DD');
-                            })
-                            // sort practices chronologically
-                            practices.sort(function(a,b){
-                                return new Date(a.date) - new Date(b.date);
-                            })
-                res.render('users/report', { practices, user, loggedIn, totalMinutes })
-                }
-            )
-            .catch(err => {
-                console.log(err)
-                res.json({ err })
-        })
-    } else if ((composer!="") && (piece=="")) {
-        console.log('composer exists!')
-        Practice.find({ $and: [ {date: {$gte:(startDate),$lt:(endDate)}}, {composer: {$eq:(composer)}}] })
-        //
-        .then(practices => {
-                        // convert date for each item to date
-                        practices.forEach((practice) => {
-                            practice.date = new Date(practice.date)
-                            practice.date = moment(practice.date).format('MMMM DD');
-                        })
-                        // sort practices chronologically
-                        practices.sort(function(a,b){
-                            return new Date(a.date) - new Date(b.date);
-                        })
-            res.render('users/report', { practices, user, loggedIn, totalMinutes, composer, piece })
-            }
-        )
-        .catch(err => {
-            console.log(err)
-            res.json({ err })
-        })
-    } else if ((composer=="") && (piece!="")) {
-        console.log('piece exists!')
-        Practice.find({ $and: [ {date: {$gte:(startDate),$lt:(endDate)}}, {composer: {$eq:(composer)}}] })
-        //
-        .then(practices => {
-                        // convert date for each item to date
-                        practices.forEach((practice) => {
-                            practice.date = new Date(practice.date)
-                            practice.date = moment(practice.date).format('MMMM DD');
-                        })
-                        // sort practices chronologically
-                        practices.sort(function(a,b){
-                            return new Date(a.date) - new Date(b.date);
-                        })
-            res.render('users/report', { practices, user, loggedIn, totalMinutes, composer, piece })
-            }
-        )
-        .catch(err => {
-            console.log(err)
-            res.json({ err })
-        })
-    } else {
-        console.log('oops')
-    }
-})
-
-// TODO: IDEALLY NOT NEEDED
-////////////////////////////////
-// GET - Show Composer - gets reporting search input and shows it to you
-////////////////////////////////
-router.get('/report/mine/composer', (req,res) => {
-    let totalMinutes = 0;
-    const queryObject = url.parse(req.url,true).query
     let startDate = queryObject.startDate;
     let endDate = queryObject.endDate;
     let composer = queryObject.composer;
@@ -245,13 +157,13 @@ router.get('/report/mine/composer', (req,res) => {
                         practices.sort(function(a,b){
                             return new Date(a.date) - new Date(b.date);
                         })
-            res.render('users/composerReport', { practices, user, loggedIn, totalMinutes, composer, piece })
+            res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece })
             }
         )
         .catch(err => {
             console.log(err)
             res.json({ err })
-        })
+    })
 })
 
 ///////////////////////////////////////

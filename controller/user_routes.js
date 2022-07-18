@@ -166,7 +166,6 @@ router.get('/report/mine/range', (req,res) => {
                             return new Date(a.date) - new Date(b.date);
                         })
                         uniqueInstruments = [...new Set(instrumentArray)]
-                        console.log(uniqueInstruments)
             res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece, instrument, uniqueInstruments })
             }
         )
@@ -188,7 +187,6 @@ router.get('/report/mine/range', (req,res) => {
                             return new Date(a.date) - new Date(b.date);
                         })
                         uniqueInstruments = [...new Set(instrumentArray)]
-                        console.log(uniqueInstruments)
             res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece, instrument, uniqueInstruments })
             }
         )

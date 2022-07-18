@@ -1,6 +1,9 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-md">
+    {% if composer %}
+    <h1>composer name: {{composer}}</h1>
+    {% endif %}
     {% if user%}
     <h2 class="text-center">{{user}} Practice Review</h2> 
     {% else %}
@@ -15,11 +18,21 @@
         </tr>
         {% for practice in practices %}
         <tr>{% for entry in practice.entries %}
-            <td>{{practice.date}}</td>
-            <td>{{entry.piece}}</td>
-            <td>{{entry.composer}}</td>
-            <td class="countMe">{{entry.minutes}}</td>
-            {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
+            {% if composer %}
+                {% if entry.composer == composer%}
+                    <td>{{practice.date}}</td>
+                    <td>{{entry.piece}}</td>
+                    <td>{{entry.composer}}</td>
+                    <td class="countMe">{{entry.minutes}}</td>
+                    {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
+                {% endif %}
+            {% else %}
+                <td>{{practice.date}}</td>
+                <td>{{entry.piece}}</td>
+                <td>{{entry.composer}}</td>
+                <td class="countMe">{{entry.minutes}}</td>
+                {%assign totalMinutes = entry.minutes | plus: totalMinutes %}
+            {% endif %}
         </tr>
             {% endfor %}
             {% endfor %}
@@ -50,14 +63,14 @@
                     id="endDate" 
                     value="2024-01-01"
                 >
-                <label class="form-label" for="composer">Composer:</label>
-                <input 
-                    class="form-control composerSearch" 
-                    type="text" 
-                    name="composer" 
-                    id="composer" 
-                    placeholder="Search Composer Here"
-                >
+                    <label class="form-label" for="composer">Composer:</label>
+                    <input 
+                        class="form-control composerSearch" 
+                        type="text" 
+                        name="composer" 
+                        id="composer" 
+                        placeholder="Search Composer Here"
+                    >
                 <label class="form-label" for="piece">Piece:</label>
                 <input 
                     class="form-control pieceSearch" 
@@ -66,11 +79,11 @@
                     id="piece" 
                     placeholder="Search Piece Here"
                 >
-                </fieldset>
-            <div class="text-center">
-                <input type="submit" value="Filter Practice by Date" class="btn btn-primary">
-            </div>
-        </form>
+            </fieldset>
+        <div class="text-center">
+            <input type="submit" value="Filter Practice" class="btn btn-primary">
+        </div>
+    </form>
     </div>
     <div class="text-center">
         <a href="../../../practices/mine">Go Back</a>

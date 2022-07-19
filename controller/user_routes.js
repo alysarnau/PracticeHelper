@@ -272,10 +272,6 @@ router.put('/:composerName', (req, res) => {
     User.updateOne({name: user}, { $push: {favoriteComposers: composerName}})
         .then(singleUser => {
             console.log(singleUser)
-            // future promising here
-            // singleUser.updateOne({name: user}, { $push: {favoriteComposers: composerName}});
-            //console.log('after adding', singleUser)
-            // return singleUser.save()
             res.redirect('/users/favorites')
         })
         .catch(err => {
@@ -286,16 +282,13 @@ router.put('/:composerName', (req, res) => {
 ////////////////////////////////
 // DELETE - Update the user with req.body.composer
 ////////////////////////////////
-router.delete('/delete/:userId/:composerName', (req,res) => {
+router.delete('/delete/:composerName', (req,res) => {
+    const user = req.session.username
     const userId = req.params.userId
     const composerName = req.params.composerName;
-    User.findById(userId)
-        .then(user => {
-            const composer = user.favoriteComposers.name(composerName)
-            composer.remove()
-            user.save() 
-        })
-        .then(user => {
+    User.updateOne({name: user}, { $pull: {favoriteComposers: composerName}})
+        .then(singleUser => {
+            console.log(singleUser)
             res.redirect('/users/favorites')
         })
         .catch(err => {

@@ -4,13 +4,13 @@
 {% if loggedIn %}
 
 <div class="container-md">
-    <h2 class="text-center">{{user}}'s favorites!</h2>
+    <h2 class="text-center">{{user}}'s Favorites</h2>
     <div class="favoritesText">
         <p><strong>Favorite Composers:</strong> 
             <ul>
             {% for composer in favoriteComposers %}
                 <li>{{composer}} 
-                    <form action="/users/delete/{{user._id}}/{{composer}}?_method=DELETE" method="POST">
+                    <form action="/users/delete/{{composer}}?_method=DELETE" method="POST">
                         <input type="submit" value="Delete" class="show-page btn btn-danger" />
                     </form>
                 </li>

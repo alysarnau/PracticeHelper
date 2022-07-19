@@ -1,11 +1,9 @@
 # Practice Helper App
 
 # TODO:
-- create favorite composer functionality with external API (open opus)
-    - add favorite composer array field to user
-    - add lookup page that tracks with open opus composers
-    - add functionality to push the selected composer to favorite composer array
-    - create user favorite composer view
+- fix favorite composers not showing up when search is open
+- fix favorite composer button functionality
+- Create favorite piece functionality
 - create route table for entries
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 
@@ -61,6 +59,12 @@ To improve as a musician, consistent practice is key! The best thing you can do 
 - View collection of stats for all user's practice stats (by COMPOSER)
     - query for entries with a certain composer
     - return practices entries with that composer
+- View list of favorite composers
+    - Search open opus API for list of composers (all or by name)
+    - Display list of composers that match the criteria
+    - Add the selected composer to list of favorite composers
+    - View list of favorite composers at will
+
 
 
 # Whiteboard

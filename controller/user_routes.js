@@ -239,6 +239,18 @@ router.post('/favorites', (req, res) => {
     let favoriteComposers;
     let favoritePieces;
     let favoriteGenres;
+    User.findOne({ name: user })
+        .then(singleUser => {
+            // need to return favorite composers
+            favoriteComposers = singleUser.favoriteComposers;
+            favoritePieces = singleUser.favoritePieces;
+            favoriteGenres = singleUser.favoriteGenres;
+            }
+        )
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+    }) 
     request(URL, function(err, response, body) {
         if (err) {
                 res.render('users/searchFavorites', { composers: null, error: 'Error, please try again' });
@@ -250,7 +262,7 @@ router.post('/favorites', (req, res) => {
                         // console.log(information)
                         let composers = information.composers
                         // console.log(composers)
-                        res.render('users/searchFavorites', { composers, user, loggedIn } )
+                        res.render('users/searchFavorites', { composers, user, loggedIn, favoriteComposers, favoriteGenres, favoritePieces } )
         }
     }
     })

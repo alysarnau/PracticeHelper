@@ -47,7 +47,7 @@ function auth(req, res, next) {
     // Checking for the authorization
     if (req.session.username) {
 		loggedIn = true;
-		user = req.session.username
+		user = req.session.username;
 		next()
 	} else {
 		loggedIn = false;

@@ -13,12 +13,12 @@ const Practice = require('./practice')
 /////////////////////////////////
 const db = mongoose.connection
 db.on('open', () => {
-    // need array of starter fruits
+    // need array of starter practices
     const startPractices = [
     {
         date: '2022-07-11',
         instrument: 'Piano',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
         {
             piece: 'Piece One',
@@ -31,7 +31,7 @@ db.on('open', () => {
     {
         date: '2022-07-13',
         instrument: 'Piano',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
         {
             piece: 'Gnossiene #1',
@@ -56,7 +56,7 @@ db.on('open', () => {
     {
         date: '2022-07-05',
         instrument: 'Trombone',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
         {
             piece: 'Stars and Stripes Forever',
@@ -75,7 +75,7 @@ db.on('open', () => {
     {
         date: '2022-07-16',
         instrument: 'Harpsicord',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
         {
             piece: "Devil's Trill Sonata, Movement 1",
@@ -88,7 +88,7 @@ db.on('open', () => {
     {
         date: '2022-07-11',
         instrument: 'Pianoforte',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
         {
             piece: "The Well-Tempered Klavier, #2",
@@ -101,7 +101,7 @@ db.on('open', () => {
     {
         date: '2022-07-07',
         instrument: 'Piccolo',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
             {
             piece: 'Stars and Stripes Forever',
@@ -114,7 +114,7 @@ db.on('open', () => {
     {
         date: '2022-07-11',
         instrument: 'Piano',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
             {
             piece: 'Toccata and Fugue',
@@ -127,7 +127,7 @@ db.on('open', () => {
     {
         date: '2022-07-10',
         instrument: 'Kazoo',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
             {
             piece: 'Rem Lazar',
@@ -140,7 +140,7 @@ db.on('open', () => {
     {
         date: '2022-07-06',
         instrument: 'Harmonica',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
             {
             piece: 'Clementine',
@@ -153,7 +153,7 @@ db.on('open', () => {
     {
         date: '2022-07-04',
         instrument: 'Piano',
-        owner: '62cdc0e8d37e628d28938022',
+        owner: '62d6f1ec4ca402f571bedeb0',
         entries: [
             {
             piece: 'Scary Monsters and Nice Sprites',

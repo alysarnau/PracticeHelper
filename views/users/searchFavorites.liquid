@@ -4,20 +4,20 @@
 {% if loggedIn %}
 
 <div class="container-md">
-    <h2 class="text-center">{{user}}'s Favorites</h2>
+    <h2 class="text-center">{{user}}'s Favorite Composers</h2>
     <div class="favoritesText">
-        <p><strong>Favorite Composers:</strong> 
+        <h4><strong>Favorite Composers:</strong></h4>
             <ul>
             {% for composer in favoriteComposers %}
-                <li>{{composer}} 
-                    <form action="/users/delete/{{composer}}?_method=DELETE" method="POST">
-                        <input type="submit" value="Delete" class="show-page btn btn-danger" />
-                    </form>
-                </li>
+                <div class="favoriteRow">
+                    <li>🎵 {{composer}} 
+                        <form action="/users/delete/{{composer}}?_method=DELETE" method="POST">
+                            <input type="submit" value="X" class="deleteComposer" />
+                        </form>
+                    </li>
+                </div>
             {% endfor %}
             </ul>
-        <p><strong>Favorite Pieces:</strong> {{favoritePieces}}</p>
-        <p><strong>Favorite Genres:</strong> {{favoriteGenres}}</p>
     </div>
 
     <div class="searchDB">
@@ -38,24 +38,7 @@
             </div>
         </form>
     </div>
-    <div class="searchDB">
-        <form action="/users/favorites" method="POST">
-            <fieldset>
-                <legend class="text-center">Search Pieces</legend>
-                <label class="form-label" for="searchPieces">Search Pieces:</label>
-                <input 
-                    class="form-control" 
-                    type="text" 
-                    name="searchPieces" 
-                    id="searchPieces" 
-                    placeholder="Enter Piece Name Here"
-                >
-            </fieldset>
-            <div class="text-center">
-                <input type="submit" value="Search Pieces" class="btn btn-primary">
-            </div>
-        </form>
-    </div>
+    
 
 
 <div id="error">

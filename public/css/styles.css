@@ -147,3 +147,14 @@ article.text-center {
     margin: 10px;
     padding: 10px
 }
+
+.favoriteRow>li {
+    display:inline-flex;
+}
+
+.deleteComposer {
+    border-radius:15px;
+    background-color: maroon;
+    color: #FCF5E5;
+    margin-left: 10px;
+}

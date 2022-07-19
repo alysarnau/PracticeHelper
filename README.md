@@ -1,9 +1,6 @@
 # Practice Helper App
 
 # TODO:
-- fix favorite composers not showing up when search is open
-- fix favorite composer button functionality
-- Create favorite piece functionality
 - create route table for entries
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 

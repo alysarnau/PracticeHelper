@@ -308,6 +308,89 @@ router.delete('/delete/:composerName', (req,res) => {
         })
 })
 
+//TODO: redo this for pieces
+////////////////////////////////
+// POST - find pieces - Favorites Page
+////////////////////////////////
+router.post('/favorites/pieces', (req, res) => {
+    // const queryObject = url.parse(req.url,true).query
+    // console.log(req.session)
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
+    const searchQuery = req.body.searchComposer
+    const URL = `https://api.openopus.org/composer/list/search/${searchQuery}.json`
+    let favoriteComposers;
+    let favoritePieces;
+    let favoriteGenres;
+    User.findOne({ name: user })
+        .then(singleUser => {
+            // need to return favorite composers
+            favoriteComposers = singleUser.favoriteComposers;
+            favoritePieces = singleUser.favoritePieces;
+            favoriteGenres = singleUser.favoriteGenres;
+            }
+        )
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+    }) 
+    request(URL, function(err, response, body) {
+        if (err) {
+                res.render('users/searchFavorites', { composers: null, error: 'Error, please try again' });
+        } else {
+                let information = JSON.parse(body);
+                if (information.composers == undefined) {
+                        res.render('users/searchFavorites', { composers: null, error: 'Error, please try again'});
+                } else {
+                        // console.log(information)
+                        let composers = information.composers
+                        // console.log(composers)
+                        res.render('users/searchFavorites', { composers, user, loggedIn, favoriteComposers, favoriteGenres, favoritePieces } )
+        }
+    }
+    })
+})
+
+////////////////////////////////
+// PUT - Update the user with req.body.composer
+////////////////////////////////
+router.put('/:composerName', (req, res) => {
+    // find user by ID, update it with what's in req.body
+    //const userID = req.params.userId;
+    const loggedIn = req.session.loggedIn
+    let favoriteComposers;
+    let favoritePieces;
+    let favoriteGenres;
+    const user = req.session.username
+    const composerName = req.params.composerName;
+    console.log('params', req.params)
+    User.updateOne({name: user}, { $push: {favoriteComposers: composerName}})
+        .then(singleUser => {
+            console.log(singleUser)
+            res.redirect('/users/favorites')
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
+////////////////////////////////
+// DELETE - Update the user with req.body.composer
+////////////////////////////////
+router.delete('/delete/:composerName', (req,res) => {
+    const user = req.session.username
+    const userId = req.params.userId
+    const composerName = req.params.composerName;
+    User.updateOne({name: user}, { $pull: {favoriteComposers: composerName}})
+        .then(singleUser => {
+            console.log(singleUser)
+            res.redirect('/users/favorites')
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
 ///////////////////////////////////////
 // export our router
 ///////////////////////////////////////

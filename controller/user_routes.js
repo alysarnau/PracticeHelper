@@ -202,22 +202,19 @@ router.get('/report/mine/range', (req,res) => {
 // GET - Show - Favorites Page
 ////////////////////////////////
 router.get('/favorites', (req,res) => {
-    // const queryObject = url.parse(req.url,true).query
     const user = req.session.username
     const loggedIn = req.session.loggedIn
-    let favoriteComposers;
-    let favoritePieces;
-    let favoriteGenres;
-    User.find({ name: user })
+    let favoriteComposers = [];
+    let favoritePieces = [];
+    let favoriteGenres = [];
+    User.findOne({ name: user })
         .then(singleUser => {
-            console.log(singleUser)
             // need to return favorite composers
             favoriteComposers = singleUser.favoriteComposers;
             favoritePieces = singleUser.favoritePieces;
             favoriteGenres = singleUser.favoriteGenres;
             // need to return favorite pieces
-            // carry those over to render
-            res.render('users/searchFavorites', { user, loggedIn, favoriteComposers, favoritePieces, favoriteGenres })
+            res.render('users/searchFavorites', { singleUser, user, loggedIn, favoriteComposers, favoritePieces, favoriteGenres })
             }
         )
         .catch(err => {
@@ -231,7 +228,7 @@ router.get('/favorites', (req,res) => {
 ////////////////////////////////
 router.post('/favorites', (req, res) => {
     // const queryObject = url.parse(req.url,true).query
-    console.log(req.session)
+    // console.log(req.session)
     const user = req.session.username
     const loggedIn = req.session.loggedIn
     const searchQuery = req.body.searchComposer
@@ -247,14 +244,45 @@ router.post('/favorites', (req, res) => {
                 if (information.composers == undefined) {
                         res.render('users/searchFavorites', { composers: null, error: 'Error, please try again'});
                 } else {
-                        console.log(information)
+                        // console.log(information)
                         let composers = information.composers
-                        console.log(composers)
+                        // console.log(composers)
                         res.render('users/searchFavorites', { composers, user, loggedIn } )
         }
-}
+    }
+    })
 })
+
+////////////////////////////////
+// PUT - Update the user with req.body.composer
+////////////////////////////////
+router.put('/:composerName', (req, res) => {
+    // find user by ID, update it with what's in req.body
+    //const userID = req.params.userId;
+    const loggedIn = req.session.loggedIn
+    let favoriteComposers;
+    let favoritePieces;
+    let favoriteGenres;
+    const user = req.session.username
+    const composerName = req.params.composerName;
+    console.log('params', req.params)
+    User.updateOne({name: user}, { $push: {favoriteComposers: composerName}})
+        .then(singleUser => {
+            console.log(singleUser)
+            // future promising here
+            // singleUser.updateOne({name: user}, { $push: {favoriteComposers: composerName}});
+            //console.log('after adding', singleUser)
+            // return singleUser.save()
+            res.redirect('/users/favorites')
+        })
+        .catch(err => {
+            res.json(err)
+        })
 })
+
+
+// db.users.updateOne({name: 'alysvolatile'}, { $push: {favoriteComposers: 'Chopin'}})
+
 
 ///////////////////////////////////////
 // export our router

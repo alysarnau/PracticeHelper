@@ -85,9 +85,9 @@ router.get('/:practiceId/:entryId/edit', (req,res) => {
         })
 })
 
-// ////////////////////////////////
-// // PUT - Update the entry details
-// ////////////////////////////////
+////////////////////////////////
+// PUT - Update the entry details
+////////////////////////////////
 router.put('/:practiceId/:entryId', (req, res) => {
     // find practice by ID, update it's subdoc with what's in req.body
     const practiceID = req.params.practiceId;

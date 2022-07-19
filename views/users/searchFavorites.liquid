@@ -6,27 +6,53 @@
 <div class="container-md">
     <h2 class="text-center">{{user}}'s favorites!</h2>
     <div class="favoritesText">
-        <p><strong>Favorite Composers:</strong> {{favoriteComposers}}</p>
+        <p><strong>Favorite Composers:</strong> 
+            <ul>
+            {% for composer in favoriteComposers %}
+                <li>{{composer}} <button class='btn btn-danger'>Remove</button></li>
+            {% endfor %}
+            </ul>
         <p><strong>Favorite Pieces:</strong> {{favoritePieces}}</p>
         <p><strong>Favorite Genres:</strong> {{favoriteGenres}}</p>
     </div>
 
-<form action="/users/favorites" method="POST">
-    <fieldset>
-        <legend class="text-center">Search Composers</legend>
-        <label class="form-label" for="searchComposer">Search Composer:</label>
-        <input 
-            class="form-control" 
-            type="text" 
-            name="searchComposer" 
-            id="searchComposer" 
-            placeholder="Enter Composer Name Here"
-        >
-    </fieldset>
-    <div class="text-center">
-        <input type="submit" value="Search Composers" class="btn btn-primary">
+    <div class="searchDB">
+        <form action="/users/favorites" method="POST">
+            <fieldset>
+                <legend class="text-center">Search Composers</legend>
+                <label class="form-label" for="searchComposer">Search Composer:</label>
+                <input 
+                    class="form-control" 
+                    type="text" 
+                    name="searchComposer" 
+                    id="searchComposer" 
+                    placeholder="Enter Composer Name Here"
+                >
+            </fieldset>
+            <div class="text-center">
+                <input type="submit" value="Search Composers" class="btn btn-primary">
+            </div>
+        </form>
     </div>
-</form>
+    <div class="searchDB">
+        <form action="/users/favorites" method="POST">
+            <fieldset>
+                <legend class="text-center">Search Pieces</legend>
+                <label class="form-label" for="searchPieces">Search Pieces:</label>
+                <input 
+                    class="form-control" 
+                    type="text" 
+                    name="searchPieces" 
+                    id="searchPieces" 
+                    placeholder="Enter Piece Name Here"
+                >
+            </fieldset>
+            <div class="text-center">
+                <input type="submit" value="Search Pieces" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+
 
 <div id="error">
 {% if error %}
@@ -44,7 +70,9 @@
     <div class="composerCardBody card-body">
         <h5 class="composerTitle card-title">{{composer.complete_name}}</h5>
         <p class="card-text">{{composer.epoch}}</p>
-        <a href="#" class="btn btn-primary composerAdd">Add to Favorites</a>
+        <form action="/users/{{composer.complete_name}}?_method=PUT" method="POST">
+            <input type="submit" class="btn btn-primary composerAdd" value="Add to Favorites" class="btn btn-primary composerAdd">
+        </form>
     </div>
     </div>
     {% endfor %}

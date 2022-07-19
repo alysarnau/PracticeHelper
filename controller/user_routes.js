@@ -21,10 +21,13 @@ const router = express.Router()
 ///////////////////////////////////////
 // GET - SIGNUP
 
-// TODO: if user is logged in, redirect to practices
 router.get('/home', (req, res) => {
-    const session = req.session
-    res.render('users/home', { session })
+    if (req.session) {
+        res.redirect('/practices')
+    } else {
+        const session = req.session
+        res.render('users/home', { session })
+    }
 })
 
 // GET - SIGNUP
@@ -280,9 +283,25 @@ router.put('/:composerName', (req, res) => {
         })
 })
 
-
-// db.users.updateOne({name: 'alysvolatile'}, { $push: {favoriteComposers: 'Chopin'}})
-
+////////////////////////////////
+// DELETE - Update the user with req.body.composer
+////////////////////////////////
+router.delete('/delete/:userId/:composerName', (req,res) => {
+    const userId = req.params.userId
+    const composerName = req.params.composerName;
+    User.findById(userId)
+        .then(user => {
+            const composer = user.favoriteComposers.name(composerName)
+            composer.remove()
+            user.save() 
+        })
+        .then(user => {
+            res.redirect('/users/favorites')
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
 
 ///////////////////////////////////////
 // export our router

@@ -9,7 +9,11 @@
         <p><strong>Favorite Composers:</strong> 
             <ul>
             {% for composer in favoriteComposers %}
-                <li>{{composer}} <button class='btn btn-danger'>Remove</button></li>
+                <li>{{composer}} 
+                    <form action="/users/delete/{{user._id}}/{{composer}}?_method=DELETE" method="POST">
+                        <input type="submit" value="Delete" class="show-page btn btn-danger" />
+                    </form>
+                </li>
             {% endfor %}
             </ul>
         <p><strong>Favorite Pieces:</strong> {{favoritePieces}}</p>

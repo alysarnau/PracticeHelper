@@ -1,16 +1,19 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 
+{% if loggedIn %}
+
 <div class="container-md">
-<h2 class="text-center">{{user}} favorites!</h2>
-<p>favorite composers: {{favoriteComposers}}</p>
-<p>favorite pieces: {{favoritePieces}}</p>
-<p>favorite genres: {{favoriteGenres}}</p>
-</div>
+    <h2 class="text-center">{{user}}'s favorites!</h2>
+    <div class="favoritesText">
+        <p><strong>Favorite Composers:</strong> {{favoriteComposers}}</p>
+        <p><strong>Favorite Pieces:</strong> {{favoritePieces}}</p>
+        <p><strong>Favorite Genres:</strong> {{favoriteGenres}}</p>
+    </div>
 
 <form action="/users/favorites" method="POST">
     <fieldset>
-        <legend>Search Composers</legend>
+        <legend class="text-center">Search Composers</legend>
         <label class="form-label" for="searchComposer">Search Composer:</label>
         <input 
             class="form-control" 
@@ -21,24 +24,38 @@
         >
     </fieldset>
     <div class="text-center">
-        <input type="submit" value="Search Composer" class="btn btn-primary">
+        <input type="submit" value="Search Composers" class="btn btn-primary">
     </div>
 </form>
 
-{{error}}
+<div id="error">
+{% if error %}
+    There has been an error. Please search again!
+{% endif %}
+</div>
 
-<h3>Search Results</h3>
+
+{% if composers %}
+<h3 class="text-center">Search Results</h3>
 <div class="composerResults">
     {% for composer in composers%}
-    <div class="card" style="width: 18rem;">
+    <div class="card composerCard text-center" style="width: 18rem;">
     <img src="{{composer.portrait}}" alt=`Portrait of {{composer.complete_name}}` />
-    <div class="card-body">
-        <h5 class="card-title">{{composer.complete_name}}</h5>
+    <div class="composerCardBody card-body">
+        <h5 class="composerTitle card-title">{{composer.complete_name}}</h5>
         <p class="card-text">{{composer.epoch}}</p>
-        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        <a href="#" class="btn btn-primary composerAdd">Add to Favorites</a>
     </div>
     </div>
     {% endfor %}
 </div>
+{% endif %}
 
+{% else %}
+<h2 class="text-center">
+    Please log in!
+</h2>
+
+{% endif %}
+</div>
 {% endblock %}

@@ -125,7 +125,19 @@ article.text-center {
     flex-wrap: wrap;
 }
 
-.card {
+.composerCard {
     box-sizing: border-box;
     max-width: 200px;
+}
+
+#error {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.composerCardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

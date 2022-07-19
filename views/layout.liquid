@@ -30,13 +30,15 @@
                             {% if loggedIn == true %}
                             <a href="/practices/mine" class="nav-link text-light">My Practice Entries</a>
                             <a href="/users/report/mine" class="nav-link text-light">My Report</a>
+                            <a href="/users/favorites" class="nav-link text-light">Favorites</a>
+                            <a href="/users/logout" class="nav-link text-light">Log Out</a>
                             {% endif %}
                             {% if loggedIn == false %}
                             <a href="/users/report" class="nav-link text-light">All Report</a>
                             <a href="/users/signup" class="nav-link text-light">Sign Up</a>
                             <a href="/users/login" class="nav-link text-light">Log In</a>
                             {% endif%}
-                            <a href="/users/logout" class="nav-link text-light">Log Out</a>
+                            
                         </div>
                     </div>
                 </div>

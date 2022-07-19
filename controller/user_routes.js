@@ -9,6 +9,7 @@ const Practice = require('../models/practice')
 const Entry = require('../models/practice')
 const moment = require('moment')
 const url = require('url')
+const request = require('request');
 
 ///////////////////////////////////////
 // Create a router
@@ -198,32 +199,61 @@ router.get('/report/mine/range', (req,res) => {
 })
 
 ////////////////////////////////
-// GET - Show - gets reporting search input and shows it to you
+// GET - Show - Favorites Page
 ////////////////////////////////
-router.get('/report/mine/range', (req,res) => {
+router.get('/favorites', (req,res) => {
     // const queryObject = url.parse(req.url,true).query
     const user = req.session.username
     const loggedIn = req.session.loggedIn
-    User.find({ })
-        .then(user => {
-                        // convert date for each item to date
-                        practices.forEach((practice) => {
-                            practice.date = new Date(practice.date)
-                            practice.date = moment(practice.date).format('MMMM DD');
-                            instrumentArray.push(practice.instrument)
-                        })
-                        // sort practices chronologically
-                        practices.sort(function(a,b){
-                            return new Date(a.date) - new Date(b.date);
-                        })
-                        uniqueInstruments = [...new Set(instrumentArray)]
-            res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece, instrument, uniqueInstruments })
+    let favoriteComposers;
+    let favoritePieces;
+    let favoriteGenres;
+    User.find({ name: user })
+        .then(singleUser => {
+            console.log(singleUser)
+            // need to return favorite composers
+            favoriteComposers = singleUser.favoriteComposers;
+            favoritePieces = singleUser.favoritePieces;
+            favoriteGenres = singleUser.favoriteGenres;
+            // need to return favorite pieces
+            // carry those over to render
+            res.render('users/searchFavorites', { user, loggedIn, favoriteComposers, favoritePieces, favoriteGenres })
             }
         )
         .catch(err => {
             console.log(err)
             res.json({ err })
     }) 
+})
+
+////////////////////////////////
+// POST - find composers - Favorites Page
+////////////////////////////////
+router.post('/favorites', (req, res) => {
+    // const queryObject = url.parse(req.url,true).query
+    console.log(req.session)
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
+    const searchQuery = req.body.searchComposer
+    const URL = `https://api.openopus.org/composer/list/search/${searchQuery}.json`
+    let favoriteComposers;
+    let favoritePieces;
+    let favoriteGenres;
+    request(URL, function(err, response, body) {
+        if (err) {
+                res.render('users/searchFavorites', { composers: null, error: 'Error, please try again' });
+        } else {
+                let information = JSON.parse(body);
+                if (information.composers == undefined) {
+                        res.render('users/searchFavorites', { composers: null, error: 'Error, please try again'});
+                } else {
+                        console.log(information)
+                        let composerName = information.composers[0].complete_name
+                        console.log(composerName)
+                        res.render('users/searchFavorites', { composerName, user, loggedIn } )
+        }
+}
+})
 })
 
 ///////////////////////////////////////

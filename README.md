@@ -13,6 +13,7 @@
 # Purpose
 To improve as a musician, consistent practice is key! The best thing you can do to assist in that is to keep detailed practice notes: keeping detailed notes about what precisely you have practiced, at what tempo, and for how long, all come in handy when it comes to improving for the hobby musician or the professional player. This app is here to help! Detailed notes broken down by day and piece, that are easily reviewed, will help you improve as a musician. Enjoy!
 
+
 # User stories: (`As a user...`)
 - Create/Post a Day's practice (2 routes in one!)
     - new schema
@@ -62,9 +63,7 @@ To improve as a musician, consistent practice is key! The best thing you can do 
     - return practices entries with that composer
 
 
-
 # Whiteboard
-
 -https://miro.com/app/board/uXjVOmuG6zM=/?share_link_id=766756207036
 
 Start Screen
@@ -91,8 +90,30 @@ Practice Review
 ERD
 <img src="./whiteboard/ERD.png" />
 
+
 # External API Used
 - https://openopus.org/
+
+
+# Install Instructions
+- Fork and clone this repository!
+- Run npm install to run dependencies
+    - "bcryptjs": "^2.4.3",
+    - "connect-mongo": "^4.6.0",
+    - "dotenv": "^16.0.1",
+    - "expres": "^0.0.5",
+    - "express": "^4.18.1",
+    - "express-session": "^1.17.3",
+    - "liquid-express-views": "^1.0.8",
+    - "method-override": "^3.0.0",
+    - "moment": "^2.29.4",
+    - "mongoose": "^6.4.4",
+    - "morgan": "^1.10.0"
+- Recommended: create a .gitignore file and set it to ignore node_modules!
+- Recommended: Seed the database with beginning data: run "npm run seed" on the command line.
+- Open the app by running "nodemon start" on the command line.
+- Go to localhost:3000 and enjoy the app!
+
 
 # Routes Table for Overall Practice
 
@@ -105,6 +126,7 @@ ERD
 | Edit     | /practice/:id/edit |    GET    | Shows edit form for one practice post |
 | Update   | /practice/:id      |    PUT    | Updates a particular practice post    |
 | Destroy  | /practice/:id      |  DELETE   | Deletes a particular practice post    |
+
 
 # STRETCH GOALS
 - Add a field to User Schema where you can add in favorite composers/pieces

@@ -2,7 +2,34 @@
 {% block content %}
 
 <div class="container-md">
-<p>This is where the search favorites page will be.</p>
+<h2 class="text-center">{{user}} favorites!</h2>
+<p>favorite composers: {{favoriteComposers}}</p>
+<p>favorite pieces: {{favoritePieces}}</p>
+<p>favorite genres: {{favoriteGenres}}</p>
 </div>
+
+<form action="/users/favorites" method="POST">
+    <fieldset>
+        <legend>Search Composers</legend>
+        <label class="form-label" for="searchComposer">Search Composer:</label>
+        <input 
+            class="form-control" 
+            type="text" 
+            name="searchComposer" 
+            id="searchComposer" 
+            value="Chopin"
+        >
+    </fieldset>
+    <div class="text-center">
+        <input type="submit" value="Search Composer" class="btn btn-primary">
+    </div>
+</form>
+
+{{error}}
+
+<h3>Search Results</h3>
+<ul>
+    <li>{{composerName}}</li>
+</ul>
 
 {% endblock %}

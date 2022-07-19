@@ -197,6 +197,34 @@ router.get('/report/mine/range', (req,res) => {
     }
 })
 
+////////////////////////////////
+// GET - Show - gets reporting search input and shows it to you
+////////////////////////////////
+router.get('/report/mine/range', (req,res) => {
+    // const queryObject = url.parse(req.url,true).query
+    const user = req.session.username
+    const loggedIn = req.session.loggedIn
+    User.find({ })
+        .then(user => {
+                        // convert date for each item to date
+                        practices.forEach((practice) => {
+                            practice.date = new Date(practice.date)
+                            practice.date = moment(practice.date).format('MMMM DD');
+                            instrumentArray.push(practice.instrument)
+                        })
+                        // sort practices chronologically
+                        practices.sort(function(a,b){
+                            return new Date(a.date) - new Date(b.date);
+                        })
+                        uniqueInstruments = [...new Set(instrumentArray)]
+            res.render('users/searchReport', { practices, user, loggedIn, totalMinutes, composer, piece, instrument, uniqueInstruments })
+            }
+        )
+        .catch(err => {
+            console.log(err)
+            res.json({ err })
+    }) 
+})
 
 ///////////////////////////////////////
 // export our router

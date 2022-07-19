@@ -17,7 +17,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    favoriteComposers: [String],
+    favoritePieces: [String],
+    favoriteGenres: [String],
 })
 
 // make a user model with the userSchema

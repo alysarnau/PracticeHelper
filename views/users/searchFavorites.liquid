@@ -17,7 +17,7 @@
             type="text" 
             name="searchComposer" 
             id="searchComposer" 
-            value="Chopin"
+            placeholder="Enter Composer Name Here"
         >
     </fieldset>
     <div class="text-center">
@@ -28,8 +28,17 @@
 {{error}}
 
 <h3>Search Results</h3>
-<ul>
-    <li>{{composerName}}</li>
-</ul>
+<div class="composerResults">
+    {% for composer in composers%}
+    <div class="card" style="width: 18rem;">
+    <img src="{{composer.portrait}}" alt=`Portrait of {{composer.complete_name}}` />
+    <div class="card-body">
+        <h5 class="card-title">{{composer.complete_name}}</h5>
+        <p class="card-text">{{composer.epoch}}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

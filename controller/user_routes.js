@@ -248,9 +248,9 @@ router.post('/favorites', (req, res) => {
                         res.render('users/searchFavorites', { composers: null, error: 'Error, please try again'});
                 } else {
                         console.log(information)
-                        let composerName = information.composers[0].complete_name
-                        console.log(composerName)
-                        res.render('users/searchFavorites', { composerName, user, loggedIn } )
+                        let composers = information.composers
+                        console.log(composers)
+                        res.render('users/searchFavorites', { composers, user, loggedIn } )
         }
 }
 })

@@ -119,3 +119,13 @@ article.text-center {
 #filterPractice {
     margin: 10px auto;
 }
+
+.composerResults {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    box-sizing: border-box;
+    max-width: 200px;
+}

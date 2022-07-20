@@ -1,7 +1,6 @@
 # Practice Helper App
 
-# TODO:
-- create route table for entries
+# STRETCH TODO:
 - Create dark mode (https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/#toggling-themes)
 
 
@@ -111,7 +110,7 @@ ERD
     - "mongoose": "^6.4.4",
     - "morgan": "^1.10.0"
 - Recommended: create a .gitignore file and set it to ignore node_modules!
-- Recommended: Seed the database with beginning data: run "npm run seed" on the command line.
+- Recommended: Seed the database with beginning data: run "npm run seeduser" and "npm run seed" on the command line to seed the database!
 - Open the app by running "nodemon start" on the command line.
 - Go to localhost:3000 and enjoy the app!
 

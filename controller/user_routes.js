@@ -22,13 +22,10 @@ const router = express.Router()
 // GET - SIGNUP
 
 router.get('/home', (req, res) => {
-    if (req.session) {
-        res.redirect('/practices')
-    } else {
-        const session = req.session
-        res.render('users/home', { session })
+    const session = req.session
+    res.render('users/home', { session })
     }
-})
+)
 
 // GET - SIGNUP
 router.get('/signup', (req, res) => {

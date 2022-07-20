@@ -10,7 +10,6 @@ const moment = require('moment')
 const practiceRoutes = require('./controller/practice_routes')
 const userRoutes = require('./controller/user_routes')
 const entryRoutes = require('./controller/entry_routes')
-// const searchRoutes = require('./controller/search_routes')
 
 
 ////////////////////////////////////////////
@@ -63,12 +62,11 @@ app.use(auth)
 app.use('/practices', practiceRoutes)
 app.use('/users', userRoutes)
 app.use('/entries', entryRoutes)
-// app.use('/search', searchRoutes)
 
 // localhost:3000/
 app.get('/', (req, res) => {
 	//res.send('your server is running, better go catch it')
-	res.redirect('/practices')
+	res.redirect('/users/home')
 })
 
 ////////////////////////////////////////////

@@ -72,8 +72,8 @@ router.post('/login', async (req, res) => {
                     console.log('this is the session after login', req.session);
                     res.redirect('/practices/mine')
                 } else {
-                    // TODO: otherwise(pw incorrect) send to error page
-                    res.json({ error: 'username or password incorrect' });
+                    //res.json({ error: 'username or password incorrect' });
+                    res.render('users/error')
                 }
             } else {
                 res.json({ error: 'user does not exist' })

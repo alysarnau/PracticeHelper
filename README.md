@@ -112,6 +112,22 @@ ERD
     - "moment": "^2.29.4",
     - "mongoose": "^6.4.4",
     - "morgan": "^1.10.0"
+- In the .env file, please add the following information:
+
+``` 
+# where our local host runs on
+PORT=3000
+# where our local db lives
+DATABASE_URI="mongodb://localhost/practice-db"
+
+# secret is a super top secret code
+# this allows the creation of a session, as required by the middleware express session
+# this also means that ONLY users who have access to the database can create a session
+SECRET={PUT IN A SECRET FOR YOU HERE}
+
+MONGODB_URI=mongodb+srv://alysvolatile:a9cAFSibJDmcUpm@alyscluster.nycgi.mongodb.net/?retryWrites=true&w=majority 
+```
+
 - Recommended: create a .gitignore file and set it to ignore node_modules!
 - Recommended: Seed the database with beginning data: run "npm run seeduser" and "npm run seed" on the command line to seed the database!
 - Open the app by running "nodemon start" on the command line.
